@@ -9,7 +9,7 @@ const sortedHaushalte = haushalte.sort((a, b) => b.data.jahr - a.data.jahr);
 
 // Generiere Sankey-Diagramm für ein Jahr
 function generateSankey(data: any): string {
-  const lines = ['sankey-beta'];
+  const lines = ['sankey'];
 
   // Einnahmen -> Gemeinde (Labels ohne Sonderzeichen für Kompatibilität)
   for (const [key, value] of Object.entries(data.ertraege)) {
