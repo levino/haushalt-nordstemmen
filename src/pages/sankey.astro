@@ -11,21 +11,21 @@ const sortedHaushalte = haushalte.sort((a, b) => b.data.jahr - a.data.jahr);
 function generateSankey(data: any): string {
   const lines = ['sankey-beta', ''];
 
-  // Einnahmen -> Gemeinde
+  // Einnahmen -> Gemeinde (Labels ohne Sonderzeichen für Kompatibilität)
   for (const [key, value] of Object.entries(data.ertraege)) {
-    const label = ertraegeLabels[key] || key;
+    const label = (ertraegeLabels[key] || key).replace(/[&,]/g, ' ');
     const amount = Math.round((value as number) / 1000);
     if (amount > 0) {
-      lines.push(`"${label}","Gemeinde",${amount}`);
+      lines.push(`${label},Gemeinde,${amount}`);
     }
   }
 
   // Gemeinde -> Ausgaben
   for (const [key, value] of Object.entries(data.aufwendungen)) {
-    const label = aufwendungenLabels[key] || key;
+    const label = (aufwendungenLabels[key] || key).replace(/[&,]/g, ' ');
     const amount = Math.round((value as number) / 1000);
     if (amount > 0) {
-      lines.push(`"Gemeinde","${label}",${amount}`);
+      lines.push(`Gemeinde,${label},${amount}`);
     }
   }
 
