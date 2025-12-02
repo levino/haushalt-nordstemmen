@@ -7,7 +7,6 @@ const haushalte = await getCollection('haushalte');
 const sortedHaushalte = haushalte.sort((a, b) => b.data.jahr - a.data.jahr);
 
 const aktuell = sortedHaushalte.find(h => h.data.jahr === 2026);
-const vorjahr = sortedHaushalte.find(h => h.data.jahr === 2025);
 const istjahr = sortedHaushalte.find(h => h.data.typ === 'ist');
 ---
 

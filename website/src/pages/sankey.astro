@@ -34,8 +34,7 @@ function generateSankey(data: any, year: number): string {
   return lines.join('\n');
 }
 
-const aktuell = sortedHaushalte.find(h => h.data.jahr === 2026);
-const sankey2026 = aktuell ? generateSankey(aktuell.data, 2026) : '';
+// Alle Haushalte werden in der Schleife unten gerendert
 ---
 
 <Layout title="Sankey-Diagramme">
