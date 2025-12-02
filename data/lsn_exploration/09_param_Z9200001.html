@@ -1,0 +1,173 @@
+
+<html>
+
+<head>
+<title>Parameter</title>
+<meta http-equiv="expires" content="0">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Language" content="de">
+<link rel="stylesheet" type="text/css" href="links.css">
+<script language=javascript>
+<!--
+
+function PopupKarte()
+{
+Fenster = window.open("param_karte.asp?DT=Z9200001&LN=&RANGE0=&RANGE1=", "NLSLANDKARTE","width=500,height=450,menubar=no,resizable=no,dependent=yes,scrollbars=yes,status=no,toolbar=no,location=no,left=100,top=50");
+}
+
+function Schliessen()
+{
+ parent.close();
+}
+
+function Weiter()
+{
+ var el0 = document.getElementById("parambody");
+ if(el0)
+ {
+  if(el0.scrollY) el0.scrollY = 0;
+  if(el0.scrollTop) el0.scrollTop = 0;
+ }
+ if(window)
+ {
+  if(window.scrollY) window.scrollY = 0;
+  if(window.scrollTop) window.scrollTop = 0;
+ }
+ var el = document.getElementById("result");
+ if(el)
+ {
+   el.style.visibility = "visible";
+   el = document.getElementById("parambody");
+   if(el) el.style.overflow = "hidden";
+ }
+ document.formweiter.submit();
+}
+
+function HideResult()
+{
+ var el = document.getElementById("result");
+ if(el)
+ {
+  el.style.visibility = "hidden";
+  
+  var eli = document.getElementById("if_result");
+  if(eli) eli.src = "";
+  
+  el = document.getElementById("parambody");
+  if(el) el.style.overflow = "";
+ }
+}
+
+function begrenzen()
+{
+ vaw = '';
+ if(document.formweiter.VAW.checked) vaw = 'Y';
+ tsrt = '';
+ if(document.formweiter.TEXTSORT[1].checked) tsrt = 'Y';
+ newurl = 'param_haupt.asp?DT=Z9200001&IFR=1&LN=&RANGE0=' + document.formweiter.RANGE0.value + '&RANGE1=' + document.formweiter.RANGE1.value + '&VAW=' + vaw + '&TEXTSORT=' + tsrt, 'paramhaupt';
+ self.location.href = newurl;
+}
+
+function neuEbene(eb)
+{
+ vaw = '';
+ if(document.formweiter.VAW.checked) vaw = 'Y';
+ tsrt = '';
+ if(document.formweiter.TEXTSORT[1].checked) tsrt = 'Y';
+ newurl = 'param_haupt.asp?DT=Z9200001&IFR=1&LN='+eb+'&RANGE0=' + document.formweiter.RANGE0.value + '&RANGE1=' + document.formweiter.RANGE1.value + '&VAW=' + vaw + '&TEXTSORT=' + tsrt, 'paramhaupt';
+ self.location.href = newurl;
+}
+
+function resize_ifr()
+{
+  var el0 = document.getElementById("result");
+  var el1 = document.getElementById("if_result");
+  if(el0 && el1)
+  {
+    var h0 = el0.offsetHeight;
+    el1.style.height = h0 + "px";
+  }
+}
+
+//-->
+</script>
+
+<style>
+div#result {position:absolute; left:0px; right:0px; top:0px; bottom:0px; background-color:#FFF; visibility:hidden;}
+iframe#if_result {position:absolute; width:100%;}
+
+button {background-color:#E5EFF5; border: 1px solid #008; color:#000; font-family:arial;}
+
+</style>
+</head>
+<body id="parambody" TOPMARGIN=1 LEFTMARGIN=5 MARGINWIDTH=2 MARGINHEIGHT=2 onload="resize_ifr()" onresize="resize_ifr()">
+<div id="result"><iframe id="if_result" name="iframe_table" src="" frameborder="0" allowTransparency="false"></iframe></div>
+<form name=formweiter action=mustertabelle.asp method=post target="iframe_table">
+
+<input type=hidden name=DT value=Z9200001>
+<input type=hidden name=ZUFALL value=0,932934>
+
+<table style="border-width:0; border-type:none;" cellpadding=5 cellspacing=2>
+<tr>
+
+<td class='paramcolumn' width=25>
+<table border=0 cellspacing=0 cellpadding=1><tr><td class='menutitel'>&nbsp</td><td class='menutitel'><font class='menutitel'>&nbsp;Tabelle:&nbsp;Z9200001&nbsp;</font></td><td class='menutitel'>&nbsp</td></tr>
+<tr><td class='menuleft' colspan=3><img src=bilder/clear.gif border=0 width=1 height=2></td></tr>
+<tr><td class='menuleft'>&nbsp</td><td class='button'>&nbsp;<a href='javascript:neuEbene(1)'>Land Niedersachsen</a>&nbsp;</td><td class='menuleft'>&lt;
+</td></tr>
+<tr><td class='menuleft' colspan=3><img src=bilder/clear.gif border=0 width=1 height=2></td></tr>
+<tr><td class='menuleft'>&nbsp</td><td class='button'>&nbsp;<a href='javascript:neuEbene(2)'>Statistische Region</a>&nbsp;</td><td class='menuleft'>&nbsp;
+</td></tr>
+<tr><td class='menuleft' colspan=3><img src=bilder/clear.gif border=0 width=1 height=2></td></tr>
+<tr><td class='menuleft'>&nbsp</td><td class='button'>&nbsp;<a href='javascript:neuEbene(3)'>Kreisfr. Stadt, Landkreis</a>&nbsp;</td><td class='menuleft'>&nbsp;
+</td></tr>
+<tr><td class='menuleft' colspan=3><img src=bilder/clear.gif border=0 width=1 height=2></td></tr>
+<tr><td class='menuleft'>&nbsp</td><td class='button'>&nbsp;<a href='javascript:neuEbene(4)'>Einheits/Samtgemeinde</a>&nbsp;</td><td class='menuleft'>&nbsp;
+</td></tr>
+<tr><td class='menuleft' colspan=3><img src=bilder/clear.gif border=0 width=1 height=2></td></tr>
+<tr><td class='menuleft'>&nbsp</td><td class='button'>&nbsp;<a href='javascript:neuEbene(5)'>Mitgliedsgemeinde</a>&nbsp;</td><td class='menuleft'>&nbsp;
+</td></tr>
+
+
+<tr><td class='menuleft'>&nbsp</td>
+<td  class='menuright'><font color=#FFFFFF><font class='menutext2'><br>Gebiete&nbsp;eingrenzen:&nbsp;</font></font></td>
+<td class='menuleft'>&nbsp</td></tr>
+
+<tr><td class='menuleft'>&nbsp</td>
+<td  class='menuright'><font color=#FFFFFF><font class='menutext2'>
+Von:<input type=text maxlength=6 size=6 name=RANGE0 value="">&nbsp;
+bis:<input type=text maxlength=6 size=6 name=RANGE1 value="">&nbsp;<br>
+(alle ausw&auml;hlen&nbsp;<input type=checkbox  name=VAW value="1">)&nbsp;</font></font></td>
+<td class='menuleft'>&nbsp</td></tr>
+
+<tr><td class='menuleft'>&nbsp</td>
+<td  class='menuright'><font color=#FFFFFF><font class='menutext2'>&nbsp;Gebiete&nbsp;sortieren:&nbsp;</font></font></td>
+<td class='menuleft'>&nbsp</td></tr>
+
+<tr><td class='menuleft'>&nbsp</td>
+<td  class='menuright'><font color=#FFFFFF><font class='menutext2'>
+<table border=0 cellspacing=0 cellpadding=0 width=100%><tr>
+<td nowrap valign=middle align=right><font class='menutext2'>&nbsp;hierarchisch<input type=radio checked name=TEXTSORT value=''><br>&nbsp;alphabetisch<input type=radio  name=TEXTSORT value="Y">&nbsp;</font></td>
+<td class='button'>&nbsp;<a href="javascript:begrenzen();">OK</a>&nbsp;</td></tr></table>&nbsp;</td><td class='menuleft'>&nbsp</td>
+</tr>
+
+<input type=hidden name=LN value="0"><input type=hidden name=LN2 value="9">
+<tr><td class='menuleft'>&nbsp</td><td class='menuleft'><font size=-2>&nbsp;</font></td><td class='menuleft'>&nbsp</td></tr>
+</table>
+</td>
+
+<td class='paramcolumn'><table class='param' cellpadding=2 cellspacing=0><tr><td class='paramtitel' colspan=3><font class='paramtitel'>&nbsp;Land Niedersachsen&nbsp;</font></td></tr>
+<tr><td class='paramleft'><input class='param' type=checkbox  name=UG value='000000000'></td><td class='paramleft'><font class='param'>&nbsp;0&nbsp;</font></td><td class='paramleft'><font class='param'>&nbsp;Niedersachsen&nbsp;</font></td></tr>
+</table></td>
+
+<!--input type=hidden name=LDT value=RG9K_GB9-->
+<!--input type=hidden name=ZFILE value=-->
+
+<!--tr><td></td></tr></table></td-->
+
+</tr>
+</table>
+</form>
+
+</body>
+</html>

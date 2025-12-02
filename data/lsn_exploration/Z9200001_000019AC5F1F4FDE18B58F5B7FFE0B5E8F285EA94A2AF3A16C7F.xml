@@ -1,0 +1,823 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>LSN-Online</Author>
+  <Version>14.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Head0">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Bold="1" ss:Italic="1" ss:Color="#000000"/>
+   <Interior ss:Color="#E8E8E0" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="@"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Num0_u">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#FFFFF0" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="0"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Num1_u">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#FFFFF0" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="0.0"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Num2_u">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#FFFFF0" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="0.00"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Num3_u">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#FFFFF0" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="0.000"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Num4_u">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#FFFFF0" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="0.0000"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Num5_u">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#FFFFF0" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="0.00000"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Num6_u">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#FFFFF0" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="0.000000"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Str_u">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#FFFFF0" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="@"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Dt_u">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#FFFFF0" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="Short Date"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Ts_u">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#FFFFF0" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="yyyy-mm-dd\ hh:mm:ss"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Tm_u">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#FFFFF0" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="hh:mm:ss"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Num0_g">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#F0F0E8" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="0"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Num1_g">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#F0F0E8" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="0.0"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Num2_g">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#F0F0E8" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="0.00"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Num3_g">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#F0F0E8" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="0.000"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Num4_g">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#F0F0E8" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="0.0000"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Num5_g">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#F0F0E8" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="0.00000"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Num6_g">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#F0F0E8" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="0.000000"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Str_g">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#F0F0E8" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="@"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Dt_g">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#F0F0E8" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="Short Date"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Ts_g">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#F0F0E8" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="yyyy-mm-dd\ hh:mm:ss"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Tm_g">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:Color="#000000"/>
+   <Interior ss:Color="#F0F0E8" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="hh:mm:ss"/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Z9200001">
+  <Table ss:DefaultColumnWidth="80">
+   <Column ss:AutoFitWidth="0" ss:Width="260"/>
+   <Row>
+    <Cell><Data ss:Type="String">© Landesamt für Statistik Niedersachsen, 2025.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Vervielfältigung und Verbreitung, auch auszugsweise, mit Quellenangabe gestattet.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">LSN-Online: Tabelle Z9200001</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Realsteuervergleich in Niedersachsen</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">Gebietsstand: 1.11.2021</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">  </Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row ss:Height="50">
+    <Cell ss:StyleID="Head0" ss:MergeDown="4"><Data ss:Type="String">Niedersachsen&#10;Statistische Region*&#10;Kreis*&#10;Einheits-/Samtgemeinde*&#10;Mitgliedsgemeinde*&#10;------&#10;Jahr</Data></Cell>
+    <Cell ss:StyleID="Head0" ss:MergeDown="3"><Data ss:Type="String">Einwohner&#10; &#10;am&#10; &#10; 30.06.</Data></Cell>
+    <Cell ss:StyleID="Head0" ss:MergeAcross="5"><Data ss:Type="String">Steuereinnahmen (netto) in Euro je Einwohner</Data></Cell>
+   </Row>
+   <Row ss:Height="50">
+    <Cell ss:Index="3" ss:StyleID="Head0" ss:MergeDown="2"><Data ss:Type="String">Ins-&#10;gesamt&#10; </Data></Cell>
+    <Cell ss:StyleID="Head0" ss:MergeAcross="4"><Data ss:Type="String">darunter</Data></Cell>
+   </Row>
+   <Row ss:Height="50">
+    <Cell ss:Index="4" ss:StyleID="Head0" ss:MergeAcross="1"><Data ss:Type="String"> &#10;Grundsteuer</Data></Cell>
+    <Cell ss:StyleID="Head0" ss:MergeDown="1"><Data ss:Type="String">Gewerbe-&#10;steuer&#10;(netto)&#10; &#10; &#10;1)</Data></Cell>
+    <Cell ss:StyleID="Head0" ss:MergeDown="1"><Data ss:Type="String">Gem.-&#10;anteil&#10;an der&#10;Eink.-&#10;steuer&#10;- ist -</Data></Cell>
+    <Cell ss:StyleID="Head0" ss:MergeDown="1"><Data ss:Type="String">Gem.-&#10;anteil&#10;an der&#10; Umsatz-&#10;steuer&#10;2)</Data></Cell>
+   </Row>
+   <Row ss:Height="50">
+    <Cell ss:Index="4" ss:StyleID="Head0"><Data ss:Type="String">A</Data></Cell>
+    <Cell ss:StyleID="Head0"><Data ss:Type="String">B</Data></Cell>
+   </Row>
+   <Row ss:Height="50">
+    <Cell ss:Index="2" ss:StyleID="Head0"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="Head0"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="Head0"><Data ss:Type="String">3</Data></Cell>
+    <Cell ss:StyleID="Head0"><Data ss:Type="String">4</Data></Cell>
+    <Cell ss:StyleID="Head0"><Data ss:Type="String">5</Data></Cell>
+    <Cell ss:StyleID="Head0"><Data ss:Type="String">6</Data></Cell>
+    <Cell ss:StyleID="Head0"><Data ss:Type="String">7</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Str_g" ss:MergeAcross="9"><Data ss:Type="String">254026  Nordstemmen              </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">1983</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">12215</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">325.40</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">10.75</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">32.49</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">98.51</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">182.14</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="String">-</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">1984</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">12191</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">300.07</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">10.70</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">35.40</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">65.62</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">186.14</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="String">-</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">1985</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">12109</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">309.47</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">10.44</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">38.83</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">61.66</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">196.00</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="String">-</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">1986</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">11968</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">324.59</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">10.50</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">40.44</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">72.59</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">198.63</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="String">-</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">1987</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">11945</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">321.53</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">10.76</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">41.49</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">53.03</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">213.79</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="String">-</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">1988</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">11904</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">357.26</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">10.54</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">44.30</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">70.24</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">229.31</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="String">-</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">1989</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">11884</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">386.87</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">10.95</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">44.58</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">76.42</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">251.43</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="String">-</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">1990</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">12011</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">367.66</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">10.30</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">44.32</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">76.43</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">232.95</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="String">-</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">1991</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">12069</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">426.76</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">10.84</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">46.76</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">81.29</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">284.66</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="String">-</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">1992</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">12149</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">520.51</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">11.79</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">50.28</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">138.82</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">316.49</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="String">-</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">1993</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">12153</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">495.06</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">10.75</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">51.64</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">109.78</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">320.27</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="String">-</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">1994</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">12158</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">466.97</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">10.64</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">53.08</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">95.78</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">304.33</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="String">-</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">1995</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">12373</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">467.05</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">10.34</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">57.37</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">87.28</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">306.33</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="String">-</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">1996</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">12536</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">427.90</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">9.99</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">60.59</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">84.96</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">265.43</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="String">-</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">1997</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">12658</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">397.94</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">10.15</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">63.23</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">67.91</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">249.97</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="String">-</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">1998</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">12901</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">464.18</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">10.42</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">70.49</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">109.79</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">255.23</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">12.04</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">1999</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">13131</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">432.56</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">9.59</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">75.72</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">70.58</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">257.42</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">12.53</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">2000</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">13258</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">454.02</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">10.94</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">77.75</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">89.38</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">255.59</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">13.61</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">2001</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">13283</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">417.30</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">10.70</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">79.27</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">66.00</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">240.98</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">13.50</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">2002</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">13299</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">432.47</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">10.06</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">81.58</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">73.14</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">247.53</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">13.38</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">2003</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">13264</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">442.55</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">11.89</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">97.65</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">72.65</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">240.86</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">13.23</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">2004</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">13244</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">525.55</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">10.67</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">104.01</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">168.10</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">223.70</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">13.39</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">2005</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">13205</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">555.50</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">12.50</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">109.13</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">196.62</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">217.69</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">13.68</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">2006</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">13095</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">498.98</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">11.63</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">109.22</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">114.96</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">243.08</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">14.25</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">2007</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">12970</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">579.01</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">12.05</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">110.26</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">154.61</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">279.62</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">16.27</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">2008</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">12836</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">593.48</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">11.50</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">123.70</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">109.95</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">324.96</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">17.00</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">2009</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">12640</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">640.32</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">11.98</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">115.14</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">192.81</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">297.50</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">16.28</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">2010</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">12620</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">517.49</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">11.70</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">117.27</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">77.89</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">286.55</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">16.57</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">2011</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">12242</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">603.38</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">13.93</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">135.50</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">111.28</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">316.26</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">18.12</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">2012</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">12165</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">848.16</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">13.76</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">136.61</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">312.59</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">359.38</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">17.37</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">2013</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">12038</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">961.03</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">13.81</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">137.62</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">396.82</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">385.89</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">17.77</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">2014</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">12012</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">743.70</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">13.75</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">138.86</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">148.56</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">415.44</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">18.18</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">2015</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">11963</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">1156.33</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">13.63</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">140.04</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">549.02</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">424.40</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">19.94</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">2016</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">12158</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">873.74</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">13.44</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">138.78</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">268.94</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">422.69</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">20.23</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">2017</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">12113</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">966.17</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">13.76</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">143.48</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">310.72</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">462.19</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">25.26</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">2018</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">12095</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">891.69</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">13.79</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">146.14</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">206.24</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">480.89</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">33.76</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">2019</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">12107</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">855.34</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">13.77</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">144.35</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">142.56</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">504.32</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">37.35</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">2020</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">12002</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">911.86</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">13.72</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">146.15</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">215.81</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">481.34</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">41.45</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">2021</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">12048</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">911.22</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">13.90</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">146.23</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">207.23</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">490.84</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">41.19</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">2022</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">11935</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">1060.96</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">13.28</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">148.44</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">278.55</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">566.37</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">40.38</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">2023</Data></Cell>
+    <Cell ss:StyleID="Num0_u"><Data ss:Type="Number">12007</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">1112.38</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">13.43</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">147.78</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">339.71</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">560.38</Data></Cell>
+    <Cell ss:StyleID="Num2_u"><Data ss:Type="Number">38.20</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">2024</Data></Cell>
+    <Cell ss:StyleID="Num0_g"><Data ss:Type="Number">11913</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">1295.11</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">14.86</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">162.89</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">477.80</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">587.39</Data></Cell>
+    <Cell ss:StyleID="Num2_g"><Data ss:Type="Number">37.38</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">1) Gewerbesteuer - brutto - (nach Ertrag und Kapital) abzüglich Gewerbesteuerumlage - ist -</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">2) wird erst ab 1998 erhoben.</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

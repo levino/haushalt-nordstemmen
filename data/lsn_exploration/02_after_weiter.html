@@ -1,0 +1,53 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <link rel="icon" type="image/gif" href="../favicon.gif">
+  <link rel="shortcut icon" type="image/gif" href="../favicon.gif">
+  <link type="image/gif" href="../favicon.gif">
+  <meta name="viewport" id="metaViewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><!--, minimal-ui"-->
+  <link rel="stylesheet" href="default.css" type="text/css">
+  <title>LSN-Online</title>
+  <script type="text/javascript">
+  <!--
+
+	xhttp = 0;
+	
+    function init()
+    {
+		if(top && top.location.href!=location.href)
+		{
+			top.location.replace("../default.htm");
+		}
+		else
+		{
+			xhttp = new XMLHttpRequest();
+			if(xhttp) xhttp.onload = function() {
+				// What to do when the response is ready
+				//console.log("tick end");
+			}
+			setInterval(ticker, 60000);
+			ticker();
+		}
+    }
+	
+	function ticker()
+	{
+		if(xhttp) {
+			xhttp.open("GET", "/statistik/html/ticker.asp");
+			xhttp.send();
+		}
+	}
+
+  //-->
+  </script>
+</head>
+<frameset rows="86,*" border=0 frameborder=0 framespacing=0 onload="init()">
+ <frame name=oben src="oben_link.htm" scrolling=no noresize>
+
+ <frame name=haupt src="haupt_wrapper.asp" scrolling=no noresize>
+
+</frameset>
+</html>
