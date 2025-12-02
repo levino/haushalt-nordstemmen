@@ -9,25 +9,23 @@ const sortedHaushalte = haushalte.sort((a, b) => b.data.jahr - a.data.jahr);
 
 // Generiere Sankey-Diagramm für ein Jahr
 function generateSankey(data: any, year: number): string {
-  const lines = ['sankey-beta', '', `%% Haushalt ${year}`];
+  const lines = ['sankey-beta', ''];
 
-  // Einnahmen
-  lines.push('', '%% Einnahmen');
+  // Einnahmen -> Gemeinde
   for (const [key, value] of Object.entries(data.ertraege)) {
     const label = ertraegeLabels[key] || key;
     const amount = Math.round((value as number) / 1000);
     if (amount > 0) {
-      lines.push(`${label},Gemeinde,${amount}`);
+      lines.push(`"${label}","Gemeinde",${amount}`);
     }
   }
 
-  // Ausgaben
-  lines.push('', '%% Ausgaben');
+  // Gemeinde -> Ausgaben
   for (const [key, value] of Object.entries(data.aufwendungen)) {
     const label = aufwendungenLabels[key] || key;
     const amount = Math.round((value as number) / 1000);
     if (amount > 0) {
-      lines.push(`Gemeinde,${label},${amount}`);
+      lines.push(`"Gemeinde","${label}",${amount}`);
     }
   }
 

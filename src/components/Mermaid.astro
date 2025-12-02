@@ -31,18 +31,27 @@ const id = `mermaid-${Math.random().toString(36).substring(7)}`;
   });
 
   async function renderMermaid() {
-    const elements = document.querySelectorAll('.mermaid');
+    const elements = document.querySelectorAll('.mermaid[data-chart]');
     for (const element of elements) {
       const chart = element.getAttribute('data-chart');
-      if (chart) {
-        const { svg } = await mermaid.render(element.id + '-svg', chart);
-        element.innerHTML = svg;
+      if (chart && !element.querySelector('svg')) {
+        try {
+          const { svg } = await mermaid.render(element.id + '-svg', chart);
+          element.innerHTML = svg;
+        } catch (error) {
+          console.error('Mermaid render error:', error);
+          element.innerHTML = `<pre style="color: red;">Fehler beim Rendern: ${error}</pre><pre>${chart}</pre>`;
+        }
       }
     }
   }
 
-  // Initial render
-  renderMermaid();
+  // Wait for DOM to be ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderMermaid);
+  } else {
+    renderMermaid();
+  }
 
   // Re-render on page navigation (for Astro View Transitions)
   document.addEventListener('astro:page-load', renderMermaid);
