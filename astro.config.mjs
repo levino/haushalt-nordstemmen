@@ -3,9 +3,4 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://haushalt-nordstemmen.levinkeller.de',
-  vite: {
-    optimizeDeps: {
-      include: ['mermaid']
-    }
-  }
 });

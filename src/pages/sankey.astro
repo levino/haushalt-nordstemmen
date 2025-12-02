@@ -8,7 +8,7 @@ const haushalte = await getCollection('haushalte');
 const sortedHaushalte = haushalte.sort((a, b) => b.data.jahr - a.data.jahr);
 
 // Generiere Sankey-Diagramm für ein Jahr
-function generateSankey(data: any, year: number): string {
+function generateSankey(data: any): string {
   const lines = ['sankey-beta', ''];
 
   // Einnahmen -> Gemeinde
@@ -55,7 +55,7 @@ function generateSankey(data: any, year: number): string {
           <h2>Haushalt {h.data.jahr} {h.data.typ === 'ist' ? '(Ist)' : '(Plan)'}</h2>
           <p class="source">Quelle: {h.data.quelle}</p>
           <Mermaid
-            chart={generateSankey(h.data, h.data.jahr)}
+            chart={generateSankey(h.data)}
             caption={`Geldfluss ${h.data.jahr} - Werte in Tausend EUR`}
           />
         </div>
