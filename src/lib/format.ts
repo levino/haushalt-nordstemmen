@@ -31,12 +31,12 @@ export function formatTausendEUR(value: number): number {
 export const ertraegeLabels: Record<string, string> = {
   steuern_und_abgaben: 'Steuern',
   zuwendungen_und_umlagen: 'Zuwendungen',
-  aufloesungsertraege_sonderposten: 'Auflösungserträge',
-  oeffentlich_rechtliche_entgelte: 'Gebühren',
+  aufloesungsertraege_sonderposten: 'Sonderposten',
+  oeffentlich_rechtliche_entgelte: 'Gebuehren',
   privatrechtliche_entgelte: 'Privatentgelte',
   kostenerstattungen: 'Erstattungen',
-  zinsen_finanzertraege: 'Zinserträge',
-  sonstige_ertraege: 'Sonstige Erträge',
+  zinsen_finanzertraege: 'Zinsen',
+  sonstige_ertraege: 'Sonstige Einnahmen',
 };
 
 /**
