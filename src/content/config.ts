@@ -7,6 +7,15 @@ const haushalteCollection = defineCollection({
     jahr: z.number(),
     typ: z.enum(['plan', 'ist']),
     quelle: z.string(),
+    // Optionale detaillierte Steueraufschlüsselung (aus LSN-Datenbank)
+    steuern_detail: z.object({
+      grundsteuer_a: z.number(),
+      grundsteuer_b: z.number(),
+      gewerbesteuer_netto: z.number(),
+      einkommensteueranteil: z.number(),
+      umsatzsteueranteil: z.number(),
+      sonstige_steuern: z.number(),
+    }).optional(),
     ertraege: z.object({
       steuern_und_abgaben: z.number(),
       zuwendungen_und_umlagen: z.number(),

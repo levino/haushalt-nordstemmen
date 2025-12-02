@@ -2,6 +2,14 @@
   "jahr": 2024,
   "typ": "ist",
   "quelle": "DS 103/2025 - Rechnungsergebnis 2024",
+  "steuern_detail": {
+    "grundsteuer_a": 177027,
+    "grundsteuer_b": 1940509,
+    "gewerbesteuer_netto": 5692031,
+    "einkommensteueranteil": 6997577,
+    "umsatzsteueranteil": 445308,
+    "sonstige_steuern": 1471053
+  },
   "ertraege": {
     "steuern_und_abgaben": 16723505,
     "zuwendungen_und_umlagen": 7188693,

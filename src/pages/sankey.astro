@@ -7,7 +7,17 @@ import { ertraegeLabels, aufwendungenLabels } from '../lib/format';
 const haushalte = await getCollection('haushalte');
 const sortedHaushalte = haushalte.sort((a, b) => b.data.jahr - a.data.jahr);
 
-// Generiere Sankey-Diagramm für ein Jahr
+// Labels für detaillierte Steuerarten
+const steuernDetailLabels: Record<string, string> = {
+  grundsteuer_a: 'Grundsteuer A',
+  grundsteuer_b: 'Grundsteuer B',
+  gewerbesteuer_netto: 'Gewerbesteuer',
+  einkommensteueranteil: 'Einkommensteuer',
+  umsatzsteueranteil: 'Umsatzsteuer',
+  sonstige_steuern: 'Sonstige Steuern',
+};
+
+// Generiere einfaches Sankey-Diagramm für ein Jahr
 function generateSankey(data: any): string {
   const lines = ['sankey'];
 
@@ -21,6 +31,48 @@ function generateSankey(data: any): string {
   }
 
   // Gemeinde -> Ausgaben
+  for (const [key, value] of Object.entries(data.aufwendungen)) {
+    const label = (aufwendungenLabels[key] || key).replace(/[&,]/g, ' ');
+    const amount = Math.round((value as number) / 1000);
+    if (amount > 0) {
+      lines.push(`Gemeinde,${label},${amount}`);
+    }
+  }
+
+  return lines.join('\n');
+}
+
+// Generiere mehrstufiges Sankey-Diagramm mit Steueraufschlüsselung
+function generateMultiStageSankey(data: any): string | null {
+  if (!data.steuern_detail) return null;
+
+  const lines = ['sankey'];
+
+  // Stufe 1: Detaillierte Steuerarten -> Steuern (aggregiert)
+  for (const [key, value] of Object.entries(data.steuern_detail)) {
+    const label = (steuernDetailLabels[key] || key).replace(/[&,]/g, ' ');
+    const amount = Math.round((value as number) / 1000);
+    if (amount > 0) {
+      lines.push(`${label},Steuern,${amount}`);
+    }
+  }
+
+  // Stufe 2: Alle Einnahmequellen -> Gemeinde
+  // Steuern (aggregiert) -> Gemeinde
+  const steuernGesamt = Math.round(data.ertraege.steuern_und_abgaben / 1000);
+  lines.push(`Steuern,Gemeinde,${steuernGesamt}`);
+
+  // Andere Einnahmen -> Gemeinde (ohne Steuern)
+  for (const [key, value] of Object.entries(data.ertraege)) {
+    if (key === 'steuern_und_abgaben') continue;
+    const label = (ertraegeLabels[key] || key).replace(/[&,]/g, ' ');
+    const amount = Math.round((value as number) / 1000);
+    if (amount > 0) {
+      lines.push(`${label},Gemeinde,${amount}`);
+    }
+  }
+
+  // Stufe 3: Gemeinde -> Ausgaben
   for (const [key, value] of Object.entries(data.aufwendungen)) {
     const label = (aufwendungenLabels[key] || key).replace(/[&,]/g, ' ');
     const amount = Math.round((value as number) / 1000);
@@ -50,16 +102,41 @@ function generateSankey(data: any): string {
         ))}
       </div>
 
-      {sortedHaushalte.map(h => (
-        <div id={`jahr-${h.data.jahr}`} class="sankey-section">
-          <h2>Haushalt {h.data.jahr} {h.data.typ === 'ist' ? '(Ist)' : '(Plan)'}</h2>
-          <p class="source">Quelle: {h.data.quelle}</p>
-          <Mermaid
-            chart={generateSankey(h.data)}
-            caption={`Geldfluss ${h.data.jahr} - Werte in Tausend EUR`}
-          />
-        </div>
-      ))}
+      {sortedHaushalte.map(h => {
+        const multiStage = generateMultiStageSankey(h.data);
+        return (
+          <div id={`jahr-${h.data.jahr}`} class="sankey-section">
+            <h2>Haushalt {h.data.jahr} {h.data.typ === 'ist' ? '(Ist)' : '(Plan)'}</h2>
+            <p class="source">Quelle: {h.data.quelle}</p>
+
+            {multiStage ? (
+              <>
+                <h3>Detaillierte Ansicht mit Steueraufschlüsselung</h3>
+                <p class="description">
+                  Diese Ansicht zeigt die einzelnen Steuerarten aufgeschlüsselt:
+                  Grundsteuer A/B, Gewerbesteuer, Einkommensteuer- und Umsatzsteueranteil.
+                </p>
+                <Mermaid
+                  chart={multiStage}
+                  caption={`Detaillierter Geldfluss ${h.data.jahr} - Werte in Tausend EUR`}
+                />
+                <details class="standard-view">
+                  <summary>Standard-Ansicht anzeigen</summary>
+                  <Mermaid
+                    chart={generateSankey(h.data)}
+                    caption={`Geldfluss ${h.data.jahr} (vereinfacht) - Werte in Tausend EUR`}
+                  />
+                </details>
+              </>
+            ) : (
+              <Mermaid
+                chart={generateSankey(h.data)}
+                caption={`Geldfluss ${h.data.jahr} - Werte in Tausend EUR`}
+              />
+            )}
+          </div>
+        );
+      })}
     </div>
   </section>
 
@@ -99,6 +176,41 @@ function generateSankey(data: any): string {
   .source {
     color: var(--color-text-light);
     font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .description {
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+  }
+
+  .standard-view {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: var(--color-bg-alt);
+    border-radius: 8px;
+  }
+
+  .standard-view summary {
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--color-primary);
+  }
+
+  .standard-view summary:hover {
+    text-decoration: underline;
+  }
+
+  .standard-view[open] summary {
     margin-bottom: 1rem;
   }
 </style>

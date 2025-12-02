@@ -1,0 +1,853 @@
+{
+  "region": {
+    "name": "Nordstemmen",
+    "schluessel": "254026",
+    "id": "254026000"
+  },
+  "tabelle": "Z9200001",
+  "beschreibung": "Steuereinnahmen (netto) in Euro je Einwohner",
+  "quelle": "LSN-Online (Landesamt für Statistik Niedersachsen)",
+  "abgerufen_am": "2025-12-02",
+  "daten": [
+    {
+      "jahr": 1983,
+      "einwohner": 12215,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 325.4,
+        "grundsteuer_a": 10.75,
+        "grundsteuer_b": 32.49,
+        "gewerbesteuer": 98.51,
+        "einkommensteueranteil": 182.14,
+        "umsatzsteueranteil": null
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 3974761,
+        "grundsteuer_a": 131311,
+        "grundsteuer_b": 396865,
+        "gewerbesteuer": 1203300,
+        "einkommensteueranteil": 2224840,
+        "umsatzsteueranteil": 0
+      }
+    },
+    {
+      "jahr": 1984,
+      "einwohner": 12191,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 300.07,
+        "grundsteuer_a": 10.7,
+        "grundsteuer_b": 35.4,
+        "gewerbesteuer": 65.62,
+        "einkommensteueranteil": 186.14,
+        "umsatzsteueranteil": null
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 3658153,
+        "grundsteuer_a": 130444,
+        "grundsteuer_b": 431561,
+        "gewerbesteuer": 799973,
+        "einkommensteueranteil": 2269233,
+        "umsatzsteueranteil": 0
+      }
+    },
+    {
+      "jahr": 1985,
+      "einwohner": 12109,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 309.47,
+        "grundsteuer_a": 10.44,
+        "grundsteuer_b": 38.83,
+        "gewerbesteuer": 61.66,
+        "einkommensteueranteil": 196.0,
+        "umsatzsteueranteil": null
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 3747372,
+        "grundsteuer_a": 126418,
+        "grundsteuer_b": 470192,
+        "gewerbesteuer": 746641,
+        "einkommensteueranteil": 2373364,
+        "umsatzsteueranteil": 0
+      }
+    },
+    {
+      "jahr": 1986,
+      "einwohner": 11968,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 324.59,
+        "grundsteuer_a": 10.5,
+        "grundsteuer_b": 40.44,
+        "gewerbesteuer": 72.59,
+        "einkommensteueranteil": 198.63,
+        "umsatzsteueranteil": null
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 3884693,
+        "grundsteuer_a": 125664,
+        "grundsteuer_b": 483986,
+        "gewerbesteuer": 868757,
+        "einkommensteueranteil": 2377204,
+        "umsatzsteueranteil": 0
+      }
+    },
+    {
+      "jahr": 1987,
+      "einwohner": 11945,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 321.53,
+        "grundsteuer_a": 10.76,
+        "grundsteuer_b": 41.49,
+        "gewerbesteuer": 53.03,
+        "einkommensteueranteil": 213.79,
+        "umsatzsteueranteil": null
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 3840676,
+        "grundsteuer_a": 128528,
+        "grundsteuer_b": 495598,
+        "gewerbesteuer": 633443,
+        "einkommensteueranteil": 2553722,
+        "umsatzsteueranteil": 0
+      }
+    },
+    {
+      "jahr": 1988,
+      "einwohner": 11904,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 357.26,
+        "grundsteuer_a": 10.54,
+        "grundsteuer_b": 44.3,
+        "gewerbesteuer": 70.24,
+        "einkommensteueranteil": 229.31,
+        "umsatzsteueranteil": null
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 4252823,
+        "grundsteuer_a": 125468,
+        "grundsteuer_b": 527347,
+        "gewerbesteuer": 836137,
+        "einkommensteueranteil": 2729706,
+        "umsatzsteueranteil": 0
+      }
+    },
+    {
+      "jahr": 1989,
+      "einwohner": 11884,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 386.87,
+        "grundsteuer_a": 10.95,
+        "grundsteuer_b": 44.58,
+        "gewerbesteuer": 76.42,
+        "einkommensteueranteil": 251.43,
+        "umsatzsteueranteil": null
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 4597563,
+        "grundsteuer_a": 130130,
+        "grundsteuer_b": 529789,
+        "gewerbesteuer": 908175,
+        "einkommensteueranteil": 2987994,
+        "umsatzsteueranteil": 0
+      }
+    },
+    {
+      "jahr": 1990,
+      "einwohner": 12011,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 367.66,
+        "grundsteuer_a": 10.3,
+        "grundsteuer_b": 44.32,
+        "gewerbesteuer": 76.43,
+        "einkommensteueranteil": 232.95,
+        "umsatzsteueranteil": null
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 4415964,
+        "grundsteuer_a": 123713,
+        "grundsteuer_b": 532328,
+        "gewerbesteuer": 918001,
+        "einkommensteueranteil": 2797962,
+        "umsatzsteueranteil": 0
+      }
+    },
+    {
+      "jahr": 1991,
+      "einwohner": 12069,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 426.76,
+        "grundsteuer_a": 10.84,
+        "grundsteuer_b": 46.76,
+        "gewerbesteuer": 81.29,
+        "einkommensteueranteil": 284.66,
+        "umsatzsteueranteil": null
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 5150566,
+        "grundsteuer_a": 130828,
+        "grundsteuer_b": 564346,
+        "gewerbesteuer": 981089,
+        "einkommensteueranteil": 3435562,
+        "umsatzsteueranteil": 0
+      }
+    },
+    {
+      "jahr": 1992,
+      "einwohner": 12149,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 520.51,
+        "grundsteuer_a": 11.79,
+        "grundsteuer_b": 50.28,
+        "gewerbesteuer": 138.82,
+        "einkommensteueranteil": 316.49,
+        "umsatzsteueranteil": null
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 6323676,
+        "grundsteuer_a": 143237,
+        "grundsteuer_b": 610852,
+        "gewerbesteuer": 1686524,
+        "einkommensteueranteil": 3845037,
+        "umsatzsteueranteil": 0
+      }
+    },
+    {
+      "jahr": 1993,
+      "einwohner": 12153,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 495.06,
+        "grundsteuer_a": 10.75,
+        "grundsteuer_b": 51.64,
+        "gewerbesteuer": 109.78,
+        "einkommensteueranteil": 320.27,
+        "umsatzsteueranteil": null
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 6016464,
+        "grundsteuer_a": 130645,
+        "grundsteuer_b": 627581,
+        "gewerbesteuer": 1334156,
+        "einkommensteueranteil": 3892241,
+        "umsatzsteueranteil": 0
+      }
+    },
+    {
+      "jahr": 1994,
+      "einwohner": 12158,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 466.97,
+        "grundsteuer_a": 10.64,
+        "grundsteuer_b": 53.08,
+        "gewerbesteuer": 95.78,
+        "einkommensteueranteil": 304.33,
+        "umsatzsteueranteil": null
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 5677421,
+        "grundsteuer_a": 129361,
+        "grundsteuer_b": 645347,
+        "gewerbesteuer": 1164493,
+        "einkommensteueranteil": 3700044,
+        "umsatzsteueranteil": 0
+      }
+    },
+    {
+      "jahr": 1995,
+      "einwohner": 12373,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 467.05,
+        "grundsteuer_a": 10.34,
+        "grundsteuer_b": 57.37,
+        "gewerbesteuer": 87.28,
+        "einkommensteueranteil": 306.33,
+        "umsatzsteueranteil": null
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 5778810,
+        "grundsteuer_a": 127937,
+        "grundsteuer_b": 709839,
+        "gewerbesteuer": 1079915,
+        "einkommensteueranteil": 3790221,
+        "umsatzsteueranteil": 0
+      }
+    },
+    {
+      "jahr": 1996,
+      "einwohner": 12536,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 427.9,
+        "grundsteuer_a": 9.99,
+        "grundsteuer_b": 60.59,
+        "gewerbesteuer": 84.96,
+        "einkommensteueranteil": 265.43,
+        "umsatzsteueranteil": null
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 5364154,
+        "grundsteuer_a": 125235,
+        "grundsteuer_b": 759556,
+        "gewerbesteuer": 1065059,
+        "einkommensteueranteil": 3327430,
+        "umsatzsteueranteil": 0
+      }
+    },
+    {
+      "jahr": 1997,
+      "einwohner": 12658,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 397.94,
+        "grundsteuer_a": 10.15,
+        "grundsteuer_b": 63.23,
+        "gewerbesteuer": 67.91,
+        "einkommensteueranteil": 249.97,
+        "umsatzsteueranteil": null
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 5037125,
+        "grundsteuer_a": 128479,
+        "grundsteuer_b": 800365,
+        "gewerbesteuer": 859605,
+        "einkommensteueranteil": 3164120,
+        "umsatzsteueranteil": 0
+      }
+    },
+    {
+      "jahr": 1998,
+      "einwohner": 12901,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 464.18,
+        "grundsteuer_a": 10.42,
+        "grundsteuer_b": 70.49,
+        "gewerbesteuer": 109.79,
+        "einkommensteueranteil": 255.23,
+        "umsatzsteueranteil": 12.04
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 5988386,
+        "grundsteuer_a": 134428,
+        "grundsteuer_b": 909391,
+        "gewerbesteuer": 1416401,
+        "einkommensteueranteil": 3292722,
+        "umsatzsteueranteil": 155328
+      }
+    },
+    {
+      "jahr": 1999,
+      "einwohner": 13131,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 432.56,
+        "grundsteuer_a": 9.59,
+        "grundsteuer_b": 75.72,
+        "gewerbesteuer": 70.58,
+        "einkommensteueranteil": 257.42,
+        "umsatzsteueranteil": 12.53
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 5679945,
+        "grundsteuer_a": 125926,
+        "grundsteuer_b": 994279,
+        "gewerbesteuer": 926786,
+        "einkommensteueranteil": 3380182,
+        "umsatzsteueranteil": 164531
+      }
+    },
+    {
+      "jahr": 2000,
+      "einwohner": 13258,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 454.02,
+        "grundsteuer_a": 10.94,
+        "grundsteuer_b": 77.75,
+        "gewerbesteuer": 89.38,
+        "einkommensteueranteil": 255.59,
+        "umsatzsteueranteil": 13.61
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 6019397,
+        "grundsteuer_a": 145043,
+        "grundsteuer_b": 1030810,
+        "gewerbesteuer": 1185000,
+        "einkommensteueranteil": 3388612,
+        "umsatzsteueranteil": 180441
+      }
+    },
+    {
+      "jahr": 2001,
+      "einwohner": 13283,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 417.3,
+        "grundsteuer_a": 10.7,
+        "grundsteuer_b": 79.27,
+        "gewerbesteuer": 66.0,
+        "einkommensteueranteil": 240.98,
+        "umsatzsteueranteil": 13.5
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 5542996,
+        "grundsteuer_a": 142128,
+        "grundsteuer_b": 1052943,
+        "gewerbesteuer": 876678,
+        "einkommensteueranteil": 3200937,
+        "umsatzsteueranteil": 179320
+      }
+    },
+    {
+      "jahr": 2002,
+      "einwohner": 13299,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 432.47,
+        "grundsteuer_a": 10.06,
+        "grundsteuer_b": 81.58,
+        "gewerbesteuer": 73.14,
+        "einkommensteueranteil": 247.53,
+        "umsatzsteueranteil": 13.38
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 5751419,
+        "grundsteuer_a": 133788,
+        "grundsteuer_b": 1084932,
+        "gewerbesteuer": 972689,
+        "einkommensteueranteil": 3291901,
+        "umsatzsteueranteil": 177941
+      }
+    },
+    {
+      "jahr": 2003,
+      "einwohner": 13264,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 442.55,
+        "grundsteuer_a": 11.89,
+        "grundsteuer_b": 97.65,
+        "gewerbesteuer": 72.65,
+        "einkommensteueranteil": 240.86,
+        "umsatzsteueranteil": 13.23
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 5869983,
+        "grundsteuer_a": 157709,
+        "grundsteuer_b": 1295230,
+        "gewerbesteuer": 963630,
+        "einkommensteueranteil": 3194767,
+        "umsatzsteueranteil": 175483
+      }
+    },
+    {
+      "jahr": 2004,
+      "einwohner": 13244,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 525.55,
+        "grundsteuer_a": 10.67,
+        "grundsteuer_b": 104.01,
+        "gewerbesteuer": 168.1,
+        "einkommensteueranteil": 223.7,
+        "umsatzsteueranteil": 13.39
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 6960384,
+        "grundsteuer_a": 141313,
+        "grundsteuer_b": 1377508,
+        "gewerbesteuer": 2226316,
+        "einkommensteueranteil": 2962683,
+        "umsatzsteueranteil": 177337
+      }
+    },
+    {
+      "jahr": 2005,
+      "einwohner": 13205,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 555.5,
+        "grundsteuer_a": 12.5,
+        "grundsteuer_b": 109.13,
+        "gewerbesteuer": 196.62,
+        "einkommensteueranteil": 217.69,
+        "umsatzsteueranteil": 13.68
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 7335378,
+        "grundsteuer_a": 165062,
+        "grundsteuer_b": 1441062,
+        "gewerbesteuer": 2596367,
+        "einkommensteueranteil": 2874596,
+        "umsatzsteueranteil": 180644
+      }
+    },
+    {
+      "jahr": 2006,
+      "einwohner": 13095,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 498.98,
+        "grundsteuer_a": 11.63,
+        "grundsteuer_b": 109.22,
+        "gewerbesteuer": 114.96,
+        "einkommensteueranteil": 243.08,
+        "umsatzsteueranteil": 14.25
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 6534143,
+        "grundsteuer_a": 152295,
+        "grundsteuer_b": 1430236,
+        "gewerbesteuer": 1505401,
+        "einkommensteueranteil": 3183133,
+        "umsatzsteueranteil": 186604
+      }
+    },
+    {
+      "jahr": 2007,
+      "einwohner": 12970,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 579.01,
+        "grundsteuer_a": 12.05,
+        "grundsteuer_b": 110.26,
+        "gewerbesteuer": 154.61,
+        "einkommensteueranteil": 279.62,
+        "umsatzsteueranteil": 16.27
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 7509760,
+        "grundsteuer_a": 156288,
+        "grundsteuer_b": 1430072,
+        "gewerbesteuer": 2005292,
+        "einkommensteueranteil": 3626671,
+        "umsatzsteueranteil": 211022
+      }
+    },
+    {
+      "jahr": 2008,
+      "einwohner": 12836,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 593.48,
+        "grundsteuer_a": 11.5,
+        "grundsteuer_b": 123.7,
+        "gewerbesteuer": 109.95,
+        "einkommensteueranteil": 324.96,
+        "umsatzsteueranteil": 17.0
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 7617909,
+        "grundsteuer_a": 147614,
+        "grundsteuer_b": 1587813,
+        "gewerbesteuer": 1411318,
+        "einkommensteueranteil": 4171187,
+        "umsatzsteueranteil": 218212
+      }
+    },
+    {
+      "jahr": 2009,
+      "einwohner": 12640,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 640.32,
+        "grundsteuer_a": 11.98,
+        "grundsteuer_b": 115.14,
+        "gewerbesteuer": 192.81,
+        "einkommensteueranteil": 297.5,
+        "umsatzsteueranteil": 16.28
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 8093645,
+        "grundsteuer_a": 151427,
+        "grundsteuer_b": 1455370,
+        "gewerbesteuer": 2437118,
+        "einkommensteueranteil": 3760400,
+        "umsatzsteueranteil": 205779
+      }
+    },
+    {
+      "jahr": 2010,
+      "einwohner": 12620,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 517.49,
+        "grundsteuer_a": 11.7,
+        "grundsteuer_b": 117.27,
+        "gewerbesteuer": 77.89,
+        "einkommensteueranteil": 286.55,
+        "umsatzsteueranteil": 16.57
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 6530724,
+        "grundsteuer_a": 147654,
+        "grundsteuer_b": 1479947,
+        "gewerbesteuer": 982972,
+        "einkommensteueranteil": 3616261,
+        "umsatzsteueranteil": 209113
+      }
+    },
+    {
+      "jahr": 2011,
+      "einwohner": 12242,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 603.38,
+        "grundsteuer_a": 13.93,
+        "grundsteuer_b": 135.5,
+        "gewerbesteuer": 111.28,
+        "einkommensteueranteil": 316.26,
+        "umsatzsteueranteil": 18.12
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 7386578,
+        "grundsteuer_a": 170531,
+        "grundsteuer_b": 1658791,
+        "gewerbesteuer": 1362290,
+        "einkommensteueranteil": 3871655,
+        "umsatzsteueranteil": 221825
+      }
+    },
+    {
+      "jahr": 2012,
+      "einwohner": 12165,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 848.16,
+        "grundsteuer_a": 13.76,
+        "grundsteuer_b": 136.61,
+        "gewerbesteuer": 312.59,
+        "einkommensteueranteil": 359.38,
+        "umsatzsteueranteil": 17.37
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 10317866,
+        "grundsteuer_a": 167390,
+        "grundsteuer_b": 1661861,
+        "gewerbesteuer": 3802657,
+        "einkommensteueranteil": 4371858,
+        "umsatzsteueranteil": 211306
+      }
+    },
+    {
+      "jahr": 2013,
+      "einwohner": 12038,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 961.03,
+        "grundsteuer_a": 13.81,
+        "grundsteuer_b": 137.62,
+        "gewerbesteuer": 396.82,
+        "einkommensteueranteil": 385.89,
+        "umsatzsteueranteil": 17.77
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 11568879,
+        "grundsteuer_a": 166245,
+        "grundsteuer_b": 1656670,
+        "gewerbesteuer": 4776919,
+        "einkommensteueranteil": 4645344,
+        "umsatzsteueranteil": 213915
+      }
+    },
+    {
+      "jahr": 2014,
+      "einwohner": 12012,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 743.7,
+        "grundsteuer_a": 13.75,
+        "grundsteuer_b": 138.86,
+        "gewerbesteuer": 148.56,
+        "einkommensteueranteil": 415.44,
+        "umsatzsteueranteil": 18.18
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 8933324,
+        "grundsteuer_a": 165165,
+        "grundsteuer_b": 1667986,
+        "gewerbesteuer": 1784503,
+        "einkommensteueranteil": 4990265,
+        "umsatzsteueranteil": 218378
+      }
+    },
+    {
+      "jahr": 2015,
+      "einwohner": 11963,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 1156.33,
+        "grundsteuer_a": 13.63,
+        "grundsteuer_b": 140.04,
+        "gewerbesteuer": 549.02,
+        "einkommensteueranteil": 424.4,
+        "umsatzsteueranteil": 19.94
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 13833176,
+        "grundsteuer_a": 163056,
+        "grundsteuer_b": 1675299,
+        "gewerbesteuer": 6567926,
+        "einkommensteueranteil": 5077097,
+        "umsatzsteueranteil": 238542
+      }
+    },
+    {
+      "jahr": 2016,
+      "einwohner": 12158,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 873.74,
+        "grundsteuer_a": 13.44,
+        "grundsteuer_b": 138.78,
+        "gewerbesteuer": 268.94,
+        "einkommensteueranteil": 422.69,
+        "umsatzsteueranteil": 20.23
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 10622931,
+        "grundsteuer_a": 163404,
+        "grundsteuer_b": 1687287,
+        "gewerbesteuer": 3269773,
+        "einkommensteueranteil": 5139065,
+        "umsatzsteueranteil": 245956
+      }
+    },
+    {
+      "jahr": 2017,
+      "einwohner": 12113,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 966.17,
+        "grundsteuer_a": 13.76,
+        "grundsteuer_b": 143.48,
+        "gewerbesteuer": 310.72,
+        "einkommensteueranteil": 462.19,
+        "umsatzsteueranteil": 25.26
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 11703217,
+        "grundsteuer_a": 166675,
+        "grundsteuer_b": 1737973,
+        "gewerbesteuer": 3763751,
+        "einkommensteueranteil": 5598507,
+        "umsatzsteueranteil": 305974
+      }
+    },
+    {
+      "jahr": 2018,
+      "einwohner": 12095,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 891.69,
+        "grundsteuer_a": 13.79,
+        "grundsteuer_b": 146.14,
+        "gewerbesteuer": 206.24,
+        "einkommensteueranteil": 480.89,
+        "umsatzsteueranteil": 33.76
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 10784991,
+        "grundsteuer_a": 166790,
+        "grundsteuer_b": 1767563,
+        "gewerbesteuer": 2494473,
+        "einkommensteueranteil": 5816365,
+        "umsatzsteueranteil": 408327
+      }
+    },
+    {
+      "jahr": 2019,
+      "einwohner": 12107,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 855.34,
+        "grundsteuer_a": 13.77,
+        "grundsteuer_b": 144.35,
+        "gewerbesteuer": 142.56,
+        "einkommensteueranteil": 504.32,
+        "umsatzsteueranteil": 37.35
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 10355601,
+        "grundsteuer_a": 166713,
+        "grundsteuer_b": 1747645,
+        "gewerbesteuer": 1725974,
+        "einkommensteueranteil": 6105802,
+        "umsatzsteueranteil": 452196
+      }
+    },
+    {
+      "jahr": 2020,
+      "einwohner": 12002,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 911.86,
+        "grundsteuer_a": 13.72,
+        "grundsteuer_b": 146.15,
+        "gewerbesteuer": 215.81,
+        "einkommensteueranteil": 481.34,
+        "umsatzsteueranteil": 41.45
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 10944144,
+        "grundsteuer_a": 164667,
+        "grundsteuer_b": 1754092,
+        "gewerbesteuer": 2590152,
+        "einkommensteueranteil": 5777043,
+        "umsatzsteueranteil": 497483
+      }
+    },
+    {
+      "jahr": 2021,
+      "einwohner": 12048,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 911.22,
+        "grundsteuer_a": 13.9,
+        "grundsteuer_b": 146.23,
+        "gewerbesteuer": 207.23,
+        "einkommensteueranteil": 490.84,
+        "umsatzsteueranteil": 41.19
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 10978379,
+        "grundsteuer_a": 167467,
+        "grundsteuer_b": 1761779,
+        "gewerbesteuer": 2496707,
+        "einkommensteueranteil": 5913640,
+        "umsatzsteueranteil": 496257
+      }
+    },
+    {
+      "jahr": 2022,
+      "einwohner": 11935,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 1060.96,
+        "grundsteuer_a": 13.28,
+        "grundsteuer_b": 148.44,
+        "gewerbesteuer": 278.55,
+        "einkommensteueranteil": 566.37,
+        "umsatzsteueranteil": 40.38
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 12662558,
+        "grundsteuer_a": 158497,
+        "grundsteuer_b": 1771631,
+        "gewerbesteuer": 3324494,
+        "einkommensteueranteil": 6759626,
+        "umsatzsteueranteil": 481935
+      }
+    },
+    {
+      "jahr": 2023,
+      "einwohner": 12007,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 1112.38,
+        "grundsteuer_a": 13.43,
+        "grundsteuer_b": 147.78,
+        "gewerbesteuer": 339.71,
+        "einkommensteueranteil": 560.38,
+        "umsatzsteueranteil": 38.2
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 13356347,
+        "grundsteuer_a": 161254,
+        "grundsteuer_b": 1774394,
+        "gewerbesteuer": 4078898,
+        "einkommensteueranteil": 6728483,
+        "umsatzsteueranteil": 458667
+      }
+    },
+    {
+      "jahr": 2024,
+      "einwohner": 11913,
+      "steuereinnahmen_pro_einwohner": {
+        "gesamt": 1295.11,
+        "grundsteuer_a": 14.86,
+        "grundsteuer_b": 162.89,
+        "gewerbesteuer": 477.8,
+        "einkommensteueranteil": 587.39,
+        "umsatzsteueranteil": 37.38
+      },
+      "steuereinnahmen_absolut": {
+        "gesamt": 15428645,
+        "grundsteuer_a": 177027,
+        "grundsteuer_b": 1940509,
+        "gewerbesteuer": 5692031,
+        "einkommensteueranteil": 6997577,
+        "umsatzsteueranteil": 445308
+      }
+    }
+  ]
+}
