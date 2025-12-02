@@ -1,0 +1,28 @@
+{
+  "jahr": 2024,
+  "typ": "ist",
+  "quelle": "DS 103/2025 - Rechnungsergebnis 2024",
+  "ertraege": {
+    "steuern_und_abgaben": 16723505,
+    "zuwendungen_und_umlagen": 7188693,
+    "aufloesungsertraege_sonderposten": 1024816,
+    "oeffentlich_rechtliche_entgelte": 2856361,
+    "privatrechtliche_entgelte": 186555,
+    "kostenerstattungen": 40879,
+    "zinsen_finanzertraege": 100711,
+    "sonstige_ertraege": 592455
+  },
+  "aufwendungen": {
+    "personalaufwendungen": 5266258,
+    "sach_und_dienstleistungen": 4173485,
+    "abschreibungen": 2365000,
+    "zinsen_aufwendungen": 711653,
+    "transferaufwendungen": 14132827,
+    "sonstige_aufwendungen": 769905
+  },
+  "summen": {
+    "gesamtertraege": 28713975,
+    "gesamtaufwendungen": 27419127,
+    "jahresergebnis": 1329323
+  }
+}

@@ -1,0 +1,73 @@
+---
+interface Props {
+  chart: string;
+  caption?: string;
+}
+
+const { chart, caption } = Astro.props;
+const id = `mermaid-${Math.random().toString(36).substring(7)}`;
+---
+
+<div class="mermaid-container">
+  <div class="mermaid" id={id} data-chart={chart}>
+    {chart}
+  </div>
+  {caption && <p class="mermaid-caption">{caption}</p>}
+</div>
+
+<script>
+  import mermaid from 'mermaid';
+
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'default',
+    sankey: {
+      showValues: true,
+      width: 800,
+      height: 600,
+      linkColor: 'gradient',
+      nodeAlignment: 'justify',
+    },
+  });
+
+  async function renderMermaid() {
+    const elements = document.querySelectorAll('.mermaid');
+    for (const element of elements) {
+      const chart = element.getAttribute('data-chart');
+      if (chart) {
+        const { svg } = await mermaid.render(element.id + '-svg', chart);
+        element.innerHTML = svg;
+      }
+    }
+  }
+
+  // Initial render
+  renderMermaid();
+
+  // Re-render on page navigation (for Astro View Transitions)
+  document.addEventListener('astro:page-load', renderMermaid);
+</script>
+
+<style>
+  .mermaid-container {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow-x: auto;
+  }
+
+  .mermaid {
+    display: flex;
+    justify-content: center;
+  }
+
+  .mermaid-caption {
+    text-align: center;
+    color: #718096;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+</style>

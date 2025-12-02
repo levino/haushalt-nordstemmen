@@ -1,298 +1,405 @@
 #!/usr/bin/env python3
 """
-Script zum Abrufen von Gemeindefinanzdaten von der LSN-Online Datenbank
-mittels Playwright Browser-Automatisierung.
+Script zum Abrufen von Gemeindefinanzdaten von der LSN-Online Datenbank.
+
+Zwei Methoden verfügbar:
+1. API-basiert (requests) - Schneller, für einfache Abfragen
+2. Browser-basiert (Playwright) - Für komplexe Navigationen
 
 Verwendung:
-    pip install playwright pandas openpyxl
-    playwright install chromium
+    pip install requests beautifulsoup4 pandas openpyxl
     python fetch_lsn_data.py
 
+    # Optional für Browser-Automatisierung:
+    pip install playwright
+    playwright install chromium
+    python fetch_lsn_data.py --browser
+
 Ausgabe:
-    - data/lsn_gemeindefinanzen_nordstemmen.csv
-    - data/lsn_gemeindefinanzen_nordstemmen.xlsx
+    - data/lsn_steuereinnahmen_nordstemmen.csv
+    - data/lsn_steuereinnahmen_nordstemmen.xlsx
 """
 
-import asyncio
-import pandas as pd
+import argparse
+import re
+import time
 from pathlib import Path
 from datetime import datetime
 import json
-import re
 
-try:
-    from playwright.async_api import async_playwright, TimeoutError as PlaywrightTimeout
-except ImportError:
-    print("Playwright nicht installiert. Bitte ausführen:")
-    print("  pip install playwright")
-    print("  playwright install chromium")
-    exit(1)
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
 
 # Konfiguration
-LSN_URL = "https://www1.nls.niedersachsen.de/statistik/"
+LSN_BASE_URL = "https://www1.nls.niedersachsen.de/statistik"
 GEMEINDE_NAME = "Nordstemmen"
-GEMEINDE_SCHLUESSEL = "03254035"  # AGS (Amtlicher Gemeindeschlüssel)
+GEMEINDE_LSN_ID = "254026000"  # LSN-interne ID
+GEMEINDE_KURZFORM = "254026"
+GEMEINDE_AGS = "03254035"  # Amtlicher Gemeindeschlüssel
 DATA_DIR = Path(__file__).parent.parent / "data"
-SCREENSHOTS_DIR = DATA_DIR / "screenshots"
+
+# Relevante Tabellen für Kommunalfinanzen
+TABLES = {
+    "Z9200001": "Steuereinnahmen (Zeitreihe ab 1983)",
+    "K9200001": "Steuereinnahmen (Einzeljahr)",
+    "Z9200002": "Steuerkraft und Hebesätze (Zeitreihe)",
+    "K9200002": "Steuerkraft und Hebesätze (Einzeljahr)",
+}
 
 
-class LSNScraper:
-    """Scraper für die LSN-Online Datenbank."""
+class LSNApiClient:
+    """
+    Client für die LSN-Online API.
 
-    def __init__(self, headless: bool = True):
-        self.headless = headless
-        self.browser = None
-        self.page = None
-        self.data = []
+    Nutzt direkte HTTP-Anfragen basierend auf Reverse-Engineering
+    der Web-Oberfläche.
+    """
 
-    async def start(self):
-        """Startet den Browser."""
-        self.playwright = await async_playwright().start()
-        self.browser = await self.playwright.chromium.launch(headless=self.headless)
-        self.context = await self.browser.new_context(
-            viewport={"width": 1920, "height": 1080},
-            locale="de-DE"
+    def __init__(self):
+        self.session = requests.Session()
+        self.session.headers.update({
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        })
+        self._session_initialized = False
+
+    def start_session(self) -> bool:
+        """Initialisiert eine LSN-Session."""
+        print("Starte LSN-Session...")
+        try:
+            # Schritt 1: Hauptseite laden
+            response = self.session.get(f"{LSN_BASE_URL}/default.asp")
+            if not response.ok:
+                print(f"Fehler beim Laden der Hauptseite: {response.status_code}")
+                return False
+
+            # Schritt 2: Session aktivieren durch Form-Submit
+            response = self.session.post(
+                f"{LSN_BASE_URL}/default.asp",
+                data={"LOGIN1": "WEITER"},
+                allow_redirects=True
+            )
+
+            if response.ok:
+                self._session_initialized = True
+                print("Session erfolgreich initialisiert")
+                return True
+
+        except Exception as e:
+            print(f"Session-Fehler: {e}")
+
+        return False
+
+    def fetch_table(
+        self,
+        table_id: str,
+        region_id: str = GEMEINDE_LSN_ID,
+        level: int = 5  # 5 = Mitgliedsgemeinde
+    ) -> tuple[str, str]:
+        """
+        Ruft eine Tabelle für eine Region ab.
+
+        Args:
+            table_id: Tabellen-ID (z.B. Z9200001)
+            region_id: LSN-Regions-ID (z.B. 254026000)
+            level: Gebietsebene (1-5)
+
+        Returns:
+            Tuple aus (HTML-Content, Download-URL)
+        """
+        if not self._session_initialized:
+            self.start_session()
+
+        print(f"Rufe Tabelle {table_id} für Region {region_id} ab...")
+
+        # POST an mustertabelle.asp
+        response = self.session.post(
+            f"{LSN_BASE_URL}/html/mustertabelle.asp",
+            data={
+                "DT": table_id,
+                "UG": region_id,
+                "LN": str(level),
+                "LN2": "1",
+            }
         )
-        self.page = await self.context.new_page()
-        print("Browser gestartet")
 
-    async def stop(self):
-        """Beendet den Browser."""
-        if self.browser:
-            await self.browser.close()
-        if self.playwright:
-            await self.playwright.stop()
-        print("Browser beendet")
+        if not response.ok:
+            print(f"Fehler bei Tabellenabfrage: {response.status_code}")
+            return "", ""
 
-    async def init_session(self):
-        """Initialisiert die Session auf der Hauptseite."""
-        print(f"Lade Hauptseite: {LSN_URL}")
-        await self.page.goto(LSN_URL, wait_until="networkidle")
-        await asyncio.sleep(3)  # Warte auf JavaScript
+        # Extrahiere Redirect-URL aus Meta-Refresh
+        soup = BeautifulSoup(response.text, "html.parser")
+        meta = soup.find("meta", attrs={"http-equiv": "refresh"})
 
-        # Mache Screenshot für Debugging
-        SCREENSHOTS_DIR.mkdir(parents=True, exist_ok=True)
-        await self.page.screenshot(path=SCREENSHOTS_DIR / "01_hauptseite.png")
-        print("Session initialisiert")
+        if not meta:
+            print("Keine Redirect-URL gefunden")
+            return response.text, ""
 
-    async def navigate_to_gemeindefinanzen(self):
-        """
-        Navigiert zum Bereich Gemeindefinanzen.
-        Die Navigation erfolgt über das linke Menü.
-        """
-        print("Navigiere zu Gemeindefinanzen...")
+        match = re.search(r"url='([^']+)'", meta.get("content", ""))
+        if not match:
+            print("Konnte Redirect-URL nicht parsen")
+            return response.text, ""
 
-        # Die LSN verwendet Frames - wir müssen in den richtigen Frame wechseln
+        result_path = match.group(1)
+        result_url = f"{LSN_BASE_URL}{result_path}"
+
+        # Warte auf Tabellen-Generierung
+        print("Warte auf Tabellen-Generierung...")
+        time.sleep(2)
+
+        # Lade Ergebnis
+        result_response = self.session.get(result_url)
+
+        if not result_response.ok:
+            print(f"Fehler beim Laden des Ergebnisses: {result_response.status_code}")
+            return "", ""
+
+        # Extrahiere Download-URL für ZIP
+        result_soup = BeautifulSoup(result_response.text, "html.parser")
+        download_link = result_soup.find("a", href=re.compile(r"\.zip$"))
+        download_url = ""
+        if download_link:
+            download_url = f"{LSN_BASE_URL}{download_link['href']}"
+
+        return result_response.text, download_url
+
+    def parse_html_table(self, html_content: str) -> pd.DataFrame:
+        """Parst eine HTML-Tabelle zu einem DataFrame."""
+        soup = BeautifulSoup(html_content, "html.parser")
+
+        # Finde die Haupt-Datentabelle
+        tables = soup.find_all("table")
+
+        for table in tables:
+            rows = table.find_all("tr")
+            if len(rows) < 5:  # Mindestens Header + Daten
+                continue
+
+            data = []
+            headers = None
+
+            for row in rows:
+                cells = row.find_all(["th", "td"])
+                cell_texts = [cell.get_text(strip=True) for cell in cells]
+
+                if not any(cell_texts):
+                    continue
+
+                # Erster relevanter Header hat "Jahr" oder "Niedersachsen"
+                if headers is None and any("Jahr" in t or "Niedersachsen" in t for t in cell_texts):
+                    headers = cell_texts
+                    continue
+
+                # Datenzeilen enthalten Jahreszahlen
+                if headers and any(re.match(r"^\d{4}$", t.strip()) for t in cell_texts):
+                    data.append(cell_texts)
+
+            if data and headers:
+                # Bereinige Header
+                headers = [h.replace("\n", " ").replace("\r", "").strip() for h in headers]
+
+                # Erstelle DataFrame
+                df = pd.DataFrame(data, columns=headers[:len(data[0])] if len(headers) >= len(data[0]) else None)
+                return df
+
+        return pd.DataFrame()
+
+    def download_zip(self, url: str, output_path: Path) -> bool:
+        """Lädt eine ZIP-Datei herunter."""
         try:
-            # Warte auf Frames
-            await asyncio.sleep(2)
-
-            # Suche nach dem Navigations-Frame (links.asp)
-            frames = self.page.frames
-            print(f"Gefundene Frames: {len(frames)}")
-
-            for frame in frames:
-                frame_url = frame.url
-                print(f"  Frame URL: {frame_url}")
-
-                if "links.asp" in frame_url or "navigation" in frame_url.lower():
-                    # Klicke auf "Finanzen" oder "Gemeindefinanzen"
-                    try:
-                        await frame.click("text=Finanzen", timeout=5000)
-                        print("Klick auf 'Finanzen' erfolgreich")
-                        await asyncio.sleep(2)
-                    except:
-                        print("'Finanzen' nicht gefunden, suche Alternativen...")
-
-            await self.page.screenshot(path=SCREENSHOTS_DIR / "02_nach_navigation.png")
-
+            response = self.session.get(url)
+            if response.ok:
+                output_path.write_bytes(response.content)
+                print(f"ZIP gespeichert: {output_path}")
+                return True
         except Exception as e:
-            print(f"Navigationsfehler: {e}")
-            await self.page.screenshot(path=SCREENSHOTS_DIR / "error_navigation.png")
-
-    async def search_gemeinde(self, name: str = GEMEINDE_NAME):
-        """Sucht nach der Gemeinde."""
-        print(f"Suche Gemeinde: {name}")
-
-        try:
-            # Suche nach Eingabefeld für Gemeindesuche
-            search_input = await self.page.query_selector('input[type="text"]')
-            if search_input:
-                await search_input.fill(name)
-                await self.page.keyboard.press("Enter")
-                await asyncio.sleep(2)
-
-            await self.page.screenshot(path=SCREENSHOTS_DIR / "03_gemeindesuche.png")
-
-        except Exception as e:
-            print(f"Suchfehler: {e}")
-
-    async def extract_table_data(self) -> list:
-        """Extrahiert Tabellendaten von der aktuellen Seite."""
-        print("Extrahiere Tabellendaten...")
-
-        tables = []
-
-        try:
-            # Suche nach Tabellen
-            table_elements = await self.page.query_selector_all("table")
-            print(f"Gefundene Tabellen: {len(table_elements)}")
-
-            for i, table in enumerate(table_elements):
-                rows = await table.query_selector_all("tr")
-                table_data = []
-
-                for row in rows:
-                    cells = await row.query_selector_all("td, th")
-                    row_data = []
-                    for cell in cells:
-                        text = await cell.inner_text()
-                        row_data.append(text.strip())
-                    if row_data:
-                        table_data.append(row_data)
-
-                if table_data:
-                    tables.append(table_data)
-                    print(f"  Tabelle {i+1}: {len(table_data)} Zeilen")
-
-        except Exception as e:
-            print(f"Extraktionsfehler: {e}")
-
-        return tables
-
-    async def download_excel_if_available(self):
-        """Versucht Excel-Export zu nutzen, falls verfügbar."""
-        print("Suche Excel-Export-Option...")
-
-        try:
-            # Suche nach Excel/Download Button
-            excel_button = await self.page.query_selector('a:has-text("Excel"), button:has-text("Excel"), a:has-text("Download")')
-
-            if excel_button:
-                print("Excel-Export gefunden, starte Download...")
-
-                # Warte auf Download
-                async with self.page.expect_download() as download_info:
-                    await excel_button.click()
-
-                download = await download_info.value
-                download_path = DATA_DIR / f"lsn_download_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx"
-                await download.save_as(download_path)
-                print(f"Download gespeichert: {download_path}")
-                return download_path
-
-        except Exception as e:
-            print(f"Kein Excel-Export verfügbar: {e}")
-
-        return None
-
-    async def scrape_gemeindefinanzen(self) -> dict:
-        """
-        Hauptfunktion: Scrapt Gemeindefinanzdaten.
-        Gibt strukturierte Daten zurück.
-        """
-        result = {
-            "metadata": {
-                "gemeinde": GEMEINDE_NAME,
-                "ags": GEMEINDE_SCHLUESSEL,
-                "scraped_at": datetime.now().isoformat(),
-                "source": "LSN-Online Datenbank"
-            },
-            "tables": [],
-            "raw_text": "",
-            "status": "unknown"
-        }
-
-        try:
-            await self.start()
-            await self.init_session()
-            await self.navigate_to_gemeindefinanzen()
-            await self.search_gemeinde()
-
-            # Extrahiere Daten
-            tables = await self.extract_table_data()
-            result["tables"] = tables
-
-            # Versuche Excel-Download
-            excel_path = await self.download_excel_if_available()
-            if excel_path:
-                result["excel_file"] = str(excel_path)
-
-            # Hole gesamten Seitentext
-            result["raw_text"] = await self.page.inner_text("body")
-            result["status"] = "success"
-
-        except Exception as e:
-            result["status"] = "error"
-            result["error"] = str(e)
-            print(f"Scraping-Fehler: {e}")
-
-        finally:
-            await self.stop()
-
-        return result
+            print(f"Download-Fehler: {e}")
+        return False
 
 
-def parse_lsn_tables_to_dataframe(tables: list) -> pd.DataFrame:
-    """Konvertiert extrahierte Tabellen zu einem DataFrame."""
-    all_rows = []
+def fetch_steuereinnahmen_zeitreihe(client: LSNApiClient) -> pd.DataFrame:
+    """
+    Ruft die Steuereinnahmen-Zeitreihe für Nordstemmen ab.
+    Tabelle Z9200001 enthält Daten ab 1983.
+    """
+    html, download_url = client.fetch_table("Z9200001")
 
-    for table in tables:
-        if len(table) < 2:
-            continue
+    if not html:
+        return pd.DataFrame()
 
-        # Erste Zeile als Header
-        headers = table[0]
+    # Parse HTML
+    df = client.parse_html_table(html)
 
-        for row in table[1:]:
-            if len(row) == len(headers):
-                row_dict = dict(zip(headers, row))
-                all_rows.append(row_dict)
+    if df.empty:
+        # Fallback: Versuche ZIP-Download
+        if download_url:
+            zip_path = DATA_DIR / "lsn_steuereinnahmen.zip"
+            if client.download_zip(download_url, zip_path):
+                print(f"ZIP heruntergeladen: {zip_path}")
+                print("Bitte manuell extrahieren und Excel-Datei öffnen")
 
-    if all_rows:
-        return pd.DataFrame(all_rows)
-    return pd.DataFrame()
+    return df
 
 
-async def main():
-    """Hauptprogramm."""
+def main_api():
+    """Hauptfunktion für API-basierten Abruf."""
     print("=" * 60)
-    print("LSN-Online Datenbank Scraper für Gemeinde Nordstemmen")
+    print("LSN-Online Datenbank - API-Client")
+    print(f"Gemeinde: {GEMEINDE_NAME} ({GEMEINDE_AGS})")
+    print(f"LSN-ID: {GEMEINDE_LSN_ID}")
     print("=" * 60)
 
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-    scraper = LSNScraper(headless=True)  # False für Debugging
-    result = await scraper.scrape_gemeindefinanzen()
+    client = LSNApiClient()
 
-    # Speichere Rohdaten
-    json_path = DATA_DIR / "lsn_raw_data.json"
-    with open(json_path, "w", encoding="utf-8") as f:
-        # Tables können nicht direkt serialisiert werden wenn leer
-        json.dump(result, f, ensure_ascii=False, indent=2, default=str)
-    print(f"\nRohdaten gespeichert: {json_path}")
+    if not client.start_session():
+        print("Konnte keine Session starten!")
+        return
 
-    # Konvertiere zu DataFrame
-    if result["tables"]:
-        df = parse_lsn_tables_to_dataframe(result["tables"])
-        if not df.empty:
-            csv_path = DATA_DIR / "lsn_gemeindefinanzen_nordstemmen.csv"
-            df.to_csv(csv_path, index=False, encoding="utf-8")
-            print(f"CSV gespeichert: {csv_path}")
+    # Abruf Steuereinnahmen-Zeitreihe
+    print("\n--- Steuereinnahmen (Zeitreihe) ---")
+    df = fetch_steuereinnahmen_zeitreihe(client)
 
-            xlsx_path = DATA_DIR / "lsn_gemeindefinanzen_nordstemmen.xlsx"
-            df.to_excel(xlsx_path, index=False)
-            print(f"Excel gespeichert: {xlsx_path}")
+    if not df.empty:
+        # Speichere als CSV
+        csv_path = DATA_DIR / "lsn_steuereinnahmen_nordstemmen.csv"
+        df.to_csv(csv_path, index=False, encoding="utf-8")
+        print(f"CSV gespeichert: {csv_path}")
 
-    print(f"\nStatus: {result['status']}")
-    if result.get("error"):
-        print(f"Fehler: {result['error']}")
+        # Speichere als Excel
+        xlsx_path = DATA_DIR / "lsn_steuereinnahmen_nordstemmen.xlsx"
+        df.to_excel(xlsx_path, index=False)
+        print(f"Excel gespeichert: {xlsx_path}")
 
-    print("\nScreenshots wurden in data/screenshots/ gespeichert")
-    print("\nHinweis: Die LSN-Datenbank erfordert manuelle Navigation.")
-    print("Bei Problemen führen Sie das Script mit headless=False aus")
-    print("um die Browser-Interaktion zu beobachten.")
+        # Zeige Vorschau
+        print(f"\nDaten-Vorschau ({len(df)} Zeilen):")
+        print(df.head(10).to_string())
+    else:
+        print("Keine Daten extrahiert")
+        print("Versuche Browser-Modus: python fetch_lsn_data.py --browser")
+
+    # Speichere Metadaten
+    metadata = {
+        "gemeinde": GEMEINDE_NAME,
+        "ags": GEMEINDE_AGS,
+        "lsn_id": GEMEINDE_LSN_ID,
+        "tabelle": "Z9200001",
+        "beschreibung": "Steuereinnahmen (Zeitreihe)",
+        "abgerufen_am": datetime.now().isoformat(),
+        "quelle": "LSN-Online Datenbank",
+        "url": f"{LSN_BASE_URL}/"
+    }
+
+    meta_path = DATA_DIR / "lsn_metadata.json"
+    with open(meta_path, "w", encoding="utf-8") as f:
+        json.dump(metadata, f, ensure_ascii=False, indent=2)
+    print(f"\nMetadaten gespeichert: {meta_path}")
+
+
+async def main_browser():
+    """Hauptfunktion für Browser-basierten Abruf mit Playwright."""
+    try:
+        from playwright.async_api import async_playwright
+    except ImportError:
+        print("Playwright nicht installiert!")
+        print("Installation: pip install playwright && playwright install chromium")
+        return
+
+    print("=" * 60)
+    print("LSN-Online Datenbank - Browser-Modus (Playwright)")
+    print(f"Gemeinde: {GEMEINDE_NAME}")
+    print("=" * 60)
+
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    screenshots_dir = DATA_DIR / "screenshots"
+    screenshots_dir.mkdir(exist_ok=True)
+
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=False)  # headless=True für Server
+        context = await browser.new_context(
+            viewport={"width": 1920, "height": 1080},
+            locale="de-DE"
+        )
+        page = await context.new_page()
+
+        try:
+            # 1. Startseite laden
+            print("Lade Startseite...")
+            await page.goto(f"{LSN_BASE_URL}/default.asp")
+            await page.screenshot(path=screenshots_dir / "01_start.png")
+
+            # 2. Session starten
+            print("Starte Session...")
+            await page.click('input[value="WEITER"]')
+            await page.wait_for_load_state("networkidle")
+            await page.screenshot(path=screenshots_dir / "02_hauptseite.png")
+
+            # 3. Navigiere zu Menü "Staat & Gesellschaft"
+            print("Navigiere zu Staat & Gesellschaft...")
+            frame = page.frame_locator("frame[name='haupt']").frame_locator("iframe")
+            await frame.get_by_role("button", name="Staat & Gesellschaft").click()
+            await page.wait_for_timeout(2000)
+            await page.screenshot(path=screenshots_dir / "03_staat_gesellschaft.png")
+
+            # 4. Finde und klicke auf Steuereinnahmen-Tabelle
+            print("Suche Steuereinnahmen-Tabelle...")
+            # Die Tabelle wird via JavaScript geladen
+            await frame.get_by_text("Z9200001").click()
+            await page.wait_for_timeout(2000)
+            await page.screenshot(path=screenshots_dir / "04_tabelle_param.png")
+
+            # 5. Wähle Nordstemmen
+            print(f"Wähle {GEMEINDE_NAME}...")
+            # Setze Ebene auf Mitgliedsgemeinde
+            await frame.get_by_text("Mitgliedsgemeinde").click()
+            await page.wait_for_timeout(2000)
+
+            # Filter auf Nordstemmen
+            await frame.locator('input[name="RANGE0"]').fill(GEMEINDE_KURZFORM)
+            await frame.locator('input[name="RANGE1"]').fill(GEMEINDE_KURZFORM)
+            await frame.get_by_text("OK").click()
+            await page.wait_for_timeout(2000)
+            await page.screenshot(path=screenshots_dir / "05_gemeinde_filter.png")
+
+            # 6. Checkbox aktivieren und Tabelle generieren
+            await frame.locator(f'input[value="{GEMEINDE_LSN_ID}"]').check()
+            # Klicke auf "Weiter" oder ähnlichen Button
+            await page.screenshot(path=screenshots_dir / "06_vor_generierung.png")
+
+            print("\n=== HINWEIS ===")
+            print("Browser-Modus offen für manuelle Interaktion.")
+            print("Screenshots wurden in data/screenshots/ gespeichert.")
+            print("Drücke Enter zum Beenden...")
+            input()
+
+        except Exception as e:
+            print(f"Fehler: {e}")
+            await page.screenshot(path=screenshots_dir / "error.png")
+
+        finally:
+            await browser.close()
+
+
+def main():
+    """Haupteinstiegspunkt."""
+    parser = argparse.ArgumentParser(
+        description="LSN-Online Datenbank Scraper für Gemeinde Nordstemmen"
+    )
+    parser.add_argument(
+        "--browser", "-b",
+        action="store_true",
+        help="Browser-Modus mit Playwright verwenden"
+    )
+
+    args = parser.parse_args()
+
+    if args.browser:
+        import asyncio
+        asyncio.run(main_browser())
+    else:
+        main_api()
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()

@@ -1,0 +1,107 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Mermaid from '../components/Mermaid.astro';
+import { getCollection } from 'astro:content';
+import { ertraegeLabels, aufwendungenLabels } from '../lib/format';
+
+const haushalte = await getCollection('haushalte');
+const sortedHaushalte = haushalte.sort((a, b) => b.data.jahr - a.data.jahr);
+
+// Generiere Sankey-Diagramm für ein Jahr
+function generateSankey(data: any, year: number): string {
+  const lines = ['sankey-beta', '', `%% Haushalt ${year}`];
+
+  // Einnahmen
+  lines.push('', '%% Einnahmen');
+  for (const [key, value] of Object.entries(data.ertraege)) {
+    const label = ertraegeLabels[key] || key;
+    const amount = Math.round((value as number) / 1000);
+    if (amount > 0) {
+      lines.push(`${label},Gemeinde,${amount}`);
+    }
+  }
+
+  // Ausgaben
+  lines.push('', '%% Ausgaben');
+  for (const [key, value] of Object.entries(data.aufwendungen)) {
+    const label = aufwendungenLabels[key] || key;
+    const amount = Math.round((value as number) / 1000);
+    if (amount > 0) {
+      lines.push(`Gemeinde,${label},${amount}`);
+    }
+  }
+
+  return lines.join('\n');
+}
+
+const aktuell = sortedHaushalte.find(h => h.data.jahr === 2026);
+const sankey2026 = aktuell ? generateSankey(aktuell.data, 2026) : '';
+---
+
+<Layout title="Sankey-Diagramme">
+  <section class="section">
+    <div class="container">
+      <h1>Sankey-Diagramme</h1>
+      <p>
+        Sankey-Diagramme visualisieren den Geldfluss im Gemeindehaushalt.
+        Die Breite der Bänder entspricht der Höhe der Beträge (in Tausend EUR).
+      </p>
+
+      <div class="year-nav">
+        {sortedHaushalte.map(h => (
+          <a href={`#jahr-${h.data.jahr}`}>{h.data.jahr}</a>
+        ))}
+      </div>
+
+      {sortedHaushalte.map(h => (
+        <div id={`jahr-${h.data.jahr}`} class="sankey-section">
+          <h2>Haushalt {h.data.jahr} {h.data.typ === 'ist' ? '(Ist)' : '(Plan)'}</h2>
+          <p class="source">Quelle: {h.data.quelle}</p>
+          <Mermaid
+            chart={generateSankey(h.data, h.data.jahr)}
+            caption={`Geldfluss ${h.data.jahr} - Werte in Tausend EUR`}
+          />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-bg-alt);">
+    <div class="container">
+      <h2>Wie liest man ein Sankey-Diagramm?</h2>
+      <div class="card">
+        <p>
+          <strong>Links:</strong> Einnahmequellen (Steuern, Zuwendungen, Gebühren, etc.)
+        </p>
+        <p>
+          <strong>Mitte:</strong> Der Gemeindehaushalt als zentraler Knotenpunkt
+        </p>
+        <p>
+          <strong>Rechts:</strong> Ausgabenkategorien (Personal, Transfers, Sachkosten, etc.)
+        </p>
+        <p>
+          <strong>Bandbreite:</strong> Je breiter ein Band, desto größer der Geldbetrag
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .sankey-section {
+    margin: 3rem 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .sankey-section:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .source {
+    color: var(--color-text-light);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+</style>

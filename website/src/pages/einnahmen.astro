@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { formatEUR, formatMioEUR, ertraegeLabels } from '../lib/format';
+
+const haushalte = await getCollection('haushalte');
+const sortedHaushalte = haushalte.sort((a, b) => b.data.jahr - a.data.jahr);
+const jahre = sortedHaushalte.map(h => h.data.jahr);
+
+// Erträge als Array für die Tabelle
+const ertraegeKeys = Object.keys(ertraegeLabels);
+---
+
+<Layout title="Einnahmen">
+  <section class="section">
+    <div class="container">
+      <h1>Einnahmen der Gemeinde Nordstemmen</h1>
+      <p>
+        Übersicht aller ordentlichen Erträge im Ergebnishaushalt.
+        Die Werte sind in EUR angegeben.
+      </p>
+
+      <h2>Einnahmen nach Kategorien</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Kategorie</th>
+              {jahre.map(jahr => (
+                <th class="number">{jahr}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {ertraegeKeys.map(key => (
+              <tr>
+                <td>{ertraegeLabels[key]}</td>
+                {sortedHaushalte.map(h => (
+                  <td class="number">{formatEUR((h.data.ertraege as any)[key] || 0)}</td>
+                ))}
+              </tr>
+            ))}
+            <tr class="total-row">
+              <td><strong>Summe Erträge</strong></td>
+              {sortedHaushalte.map(h => (
+                <td class="number"><strong>{formatEUR(h.data.summen.gesamtertraege)}</strong></td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Einnahmenstruktur</h2>
+      <div class="card-grid">
+        {ertraegeKeys.map(key => {
+          const aktuell = sortedHaushalte.find(h => h.data.jahr === 2026);
+          const value = aktuell ? (aktuell.data.ertraege as any)[key] || 0 : 0;
+          const total = aktuell ? aktuell.data.summen.gesamtertraege : 1;
+          const percent = ((value / total) * 100).toFixed(1);
+          return (
+            <div class="card">
+              <h3>{ertraegeLabels[key]}</h3>
+              <div class="stat-value positive">{formatMioEUR(value)}</div>
+              <div class="stat-label">{percent}% der Gesamteinnahmen (2026)</div>
+              <div class="progress-bar">
+                <div class="progress" style={`width: ${percent}%`}></div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <h2>Erläuterungen</h2>
+      <div class="card">
+        <h3>Steuern und Abgaben</h3>
+        <p>
+          Die größte Einnahmequelle. Umfasst Grundsteuer A (Land- und Forstwirtschaft),
+          Grundsteuer B (bebaute Grundstücke), Gewerbesteuer, Hundesteuer sowie
+          Gemeindeanteile an Einkommensteuer und Umsatzsteuer.
+        </p>
+
+        <h3>Zuwendungen und Umlagen</h3>
+        <p>
+          Zuweisungen vom Land Niedersachsen, Schlüsselzuweisungen aus dem
+          kommunalen Finanzausgleich sowie zweckgebundene Fördermittel.
+        </p>
+
+        <h3>Öffentlich-rechtliche Entgelte</h3>
+        <p>
+          Gebühren für kommunale Leistungen wie Kindergartengebühren,
+          Verwaltungsgebühren, Benutzungsgebühren für öffentliche Einrichtungen.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .total-row {
+    background: var(--color-bg-alt);
+    border-top: 2px solid var(--color-border);
+  }
+
+  .progress-bar {
+    background: #e2e8f0;
+    border-radius: 4px;
+    height: 8px;
+    margin-top: 0.5rem;
+    overflow: hidden;
+  }
+
+  .progress {
+    background: var(--color-success);
+    height: 100%;
+    transition: width 0.3s;
+  }
+</style>

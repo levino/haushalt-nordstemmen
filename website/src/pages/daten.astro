@@ -1,0 +1,152 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Datenquellen">
+  <section class="section">
+    <div class="container">
+      <h1>Datenquellen</h1>
+      <p>
+        Alle Haushaltsdaten stammen aus offiziellen Quellen und sind vollständig nachvollziehbar.
+      </p>
+
+      <h2>Primärquellen</h2>
+
+      <div class="card">
+        <h3>Ratsinformationssystem Nordstemmen</h3>
+        <p>
+          Die Gemeinde Nordstemmen veröffentlicht alle Rats- und Ausschussdokumente
+          über das Ratsinformationssystem.
+        </p>
+        <table>
+          <tr>
+            <td><strong>URL</strong></td>
+            <td><a href="https://nordstemmen.ratsinfomanagement.net" target="_blank">nordstemmen.ratsinfomanagement.net</a></td>
+          </tr>
+          <tr>
+            <td><strong>API-Standard</strong></td>
+            <td>OParl v1.1</td>
+          </tr>
+          <tr>
+            <td><strong>Daten seit</strong></td>
+            <td>2007</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>MCP Server Nordstemmen</h3>
+        <p>
+          Für vereinfachten Zugriff auf die Ratsinformationen steht ein MCP-Server
+          (Model Context Protocol) bereit.
+        </p>
+        <table>
+          <tr>
+            <td><strong>Endpunkt</strong></td>
+            <td><code>https://nordstemmen-mcp.levinkeller.de/mcp</code></td>
+          </tr>
+          <tr>
+            <td><strong>Protokoll</strong></td>
+            <td>JSON-RPC 2.0</td>
+          </tr>
+          <tr>
+            <td><strong>Tools</strong></td>
+            <td>search_documents, get_paper_by_reference, search_papers</td>
+          </tr>
+        </table>
+      </div>
+
+      <h2>Verwendete Dokumente</h2>
+
+      <div class="card">
+        <h3>DS 103/2025 - Haushaltsplan 2026</h3>
+        <p>
+          Haushaltssatzung und Haushaltsplan für das Haushaltsjahr 2026 sowie die
+          Aufstellung eines Haushaltssicherungskonzeptes.
+        </p>
+        <p><strong>Hauptquelle für die Daten 2024-2029</strong></p>
+        <ul>
+          <li>Anlage 3: Ergebnishaushalt 2026 (Datum: 27.11.2025)</li>
+          <li>Enthält Ist-Werte 2024 und Planwerte 2025-2029</li>
+        </ul>
+        <a href="https://nordstemmen.ratsinfomanagement.net/sdnetrim/UGhVM0hpd2NXNFdFcExjZdWwuZYs8-DBp1bzhMIH0kSk9-DyJympMWH2s7ROrZoB/Anlage_3_Ergebnishaushalt_2026.pdf" target="_blank" class="btn btn-secondary">PDF herunterladen</a>
+      </div>
+
+      <div class="card">
+        <h3>DS 89/2024 - Haushaltsplan 2025</h3>
+        <p>
+          Haushaltssatzung und Haushaltsplan für das Haushaltsjahr 2025 mit
+          Haushaltssicherungskonzept.
+        </p>
+        <a href="https://nordstemmen-mcp.levinkeller.de/pdf/f42578e8afb5426b404363f3bf140512e7a63a0095b1110131ab566468b694ef" target="_blank" class="btn btn-secondary">PDF herunterladen</a>
+      </div>
+
+      <h2>Strukturierte Daten</h2>
+
+      <div class="card">
+        <h3>GitHub Repository</h3>
+        <p>
+          Alle Daten sind im Repository als YAML und JSON verfügbar.
+          Die Datenextraktion ist vollständig reproduzierbar.
+        </p>
+        <ul>
+          <li><code>data/haushalt_nordstemmen.yaml</code> - Gesamte Haushaltsdaten</li>
+          <li><code>website/src/content/haushalte/*.json</code> - Jahresweise Daten für Astro</li>
+          <li><code>scripts/fetch_mcp_data.py</code> - Script zur Datenextraktion</li>
+        </ul>
+        <a href="https://github.com/levino/haushalt-nordstemmen" target="_blank" class="btn btn-secondary">Zum Repository</a>
+      </div>
+
+      <h2>LSN-Online Datenbank</h2>
+
+      <div class="card">
+        <h3>Landesamt für Statistik Niedersachsen</h3>
+        <p>
+          Die LSN-Online Datenbank enthält historische Gemeindefinanzdaten
+          und kann für Vergleiche mit anderen Kommunen genutzt werden.
+        </p>
+        <table>
+          <tr>
+            <td><strong>URL</strong></td>
+            <td><a href="https://www1.nls.niedersachsen.de/statistik/" target="_blank">www1.nls.niedersachsen.de/statistik</a></td>
+          </tr>
+          <tr>
+            <td><strong>Gemeindeschlüssel</strong></td>
+            <td>03254035 (Nordstemmen)</td>
+          </tr>
+          <tr>
+            <td><strong>Hinweis</strong></td>
+            <td>Keine öffentliche API, erfordert Browser-Automatisierung</td>
+          </tr>
+        </table>
+        <a href="/lsn-datenbank" class="btn btn-secondary">Technische Dokumentation</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .card {
+    margin-bottom: 1.5rem;
+  }
+
+  .card h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  .card ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .card li {
+    margin-bottom: 0.5rem;
+  }
+
+  code {
+    background: var(--color-bg-alt);
+    padding: 0.125rem 0.375rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+  }
+</style>
