@@ -1,0 +1,28 @@
+{
+  "jahr": 2025,
+  "typ": "plan",
+  "quelle": "DS 103/2025 - Haushaltsplan 2026 (Ansatz Vorjahr)",
+  "ertraege": {
+    "steuern_und_abgaben": 14173300,
+    "zuwendungen_und_umlagen": 5662800,
+    "aufloesungsertraege_sonderposten": 795500,
+    "oeffentlich_rechtliche_entgelte": 3059600,
+    "privatrechtliche_entgelte": 208000,
+    "kostenerstattungen": 118100,
+    "zinsen_finanzertraege": 66500,
+    "sonstige_ertraege": 458600
+  },
+  "aufwendungen": {
+    "personalaufwendungen": 5423300,
+    "sach_und_dienstleistungen": 5089900,
+    "abschreibungen": 2092300,
+    "zinsen_aufwendungen": 848000,
+    "transferaufwendungen": 15030900,
+    "sonstige_aufwendungen": 597400
+  },
+  "summen": {
+    "gesamtertraege": 24542400,
+    "gesamtaufwendungen": 29081800,
+    "jahresergebnis": -4539400
+  }
+}

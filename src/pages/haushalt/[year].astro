@@ -1,0 +1,158 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Mermaid from '../../components/Mermaid.astro';
+import { getCollection } from 'astro:content';
+import { formatEUR, formatMioEUR, ertraegeLabels, aufwendungenLabels } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const haushalte = await getCollection('haushalte');
+  return haushalte.map(h => ({
+    params: { year: h.data.jahr.toString() },
+    props: { haushalt: h.data },
+  }));
+}
+
+const { year } = Astro.params;
+const { haushalt } = Astro.props;
+
+const haushalte = await getCollection('haushalte');
+const sortedHaushalte = haushalte.sort((a, b) => b.data.jahr - a.data.jahr);
+
+// Sankey generieren
+function generateSankey(data: any, year: number): string {
+  const lines = ['sankey-beta', '', `%% Haushalt ${year}`];
+  lines.push('', '%% Einnahmen');
+  for (const [key, value] of Object.entries(data.ertraege)) {
+    const label = ertraegeLabels[key] || key;
+    const amount = Math.round((value as number) / 1000);
+    if (amount > 0) {
+      lines.push(`${label},Gemeinde,${amount}`);
+    }
+  }
+  lines.push('', '%% Ausgaben');
+  for (const [key, value] of Object.entries(data.aufwendungen)) {
+    const label = aufwendungenLabels[key] || key;
+    const amount = Math.round((value as number) / 1000);
+    if (amount > 0) {
+      lines.push(`Gemeinde,${label},${amount}`);
+    }
+  }
+  return lines.join('\n');
+}
+---
+
+<Layout title={`Haushalt ${year}`}>
+  <section class="section">
+    <div class="container">
+      <div class="year-nav">
+        {sortedHaushalte.map(h => (
+          <a href={`/haushalt/${h.data.jahr}`} class={h.data.jahr.toString() === year ? 'active' : ''}>
+            {h.data.jahr}
+          </a>
+        ))}
+      </div>
+
+      <h1>Haushalt {year} {haushalt.typ === 'ist' ? '(Ist-Ergebnis)' : '(Plan)'}</h1>
+      <p class="source">Quelle: {haushalt.quelle}</p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value positive">{formatMioEUR(haushalt.summen.gesamtertraege)}</div>
+          <div class="stat-label">Einnahmen</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value negative">{formatMioEUR(haushalt.summen.gesamtaufwendungen)}</div>
+          <div class="stat-label">Ausgaben</div>
+        </div>
+        <div class="stat-card">
+          <div class={`stat-value ${haushalt.summen.jahresergebnis >= 0 ? 'positive' : 'negative'}`}>
+            {formatMioEUR(haushalt.summen.jahresergebnis)}
+          </div>
+          <div class="stat-label">{haushalt.summen.jahresergebnis >= 0 ? 'Überschuss' : 'Fehlbetrag'}</div>
+        </div>
+      </div>
+
+      <h2>Geldfluss</h2>
+      <Mermaid
+        chart={generateSankey(haushalt, parseInt(year!))}
+        caption={`Geldfluss ${year} - Werte in Tausend EUR`}
+      />
+
+      <div class="two-columns">
+        <div>
+          <h2>Einnahmen</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Kategorie</th>
+                <th class="number">Betrag</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.entries(haushalt.ertraege).map(([key, value]) => (
+                <tr>
+                  <td>{ertraegeLabels[key] || key}</td>
+                  <td class="number">{formatEUR(value as number)}</td>
+                </tr>
+              ))}
+              <tr class="total-row">
+                <td><strong>Summe</strong></td>
+                <td class="number"><strong>{formatEUR(haushalt.summen.gesamtertraege)}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          <h2>Ausgaben</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Kategorie</th>
+                <th class="number">Betrag</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.entries(haushalt.aufwendungen).map(([key, value]) => (
+                <tr>
+                  <td>{aufwendungenLabels[key] || key}</td>
+                  <td class="number">{formatEUR(value as number)}</td>
+                </tr>
+              ))}
+              <tr class="total-row">
+                <td><strong>Summe</strong></td>
+                <td class="number"><strong>{formatEUR(haushalt.summen.gesamtaufwendungen)}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .source {
+    color: var(--color-text-light);
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+  }
+
+  .two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .two-columns {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .total-row {
+    background: var(--color-bg-alt);
+    border-top: 2px solid var(--color-border);
+  }
+</style>

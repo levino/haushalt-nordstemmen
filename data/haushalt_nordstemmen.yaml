@@ -1,0 +1,363 @@
+# Haushaltsdaten der Gemeinde Nordstemmen
+# Quellen: Ratsinformationssystem Nordstemmen (OParl-API via MCP Server)
+# Datenstand: November 2025 (Ergebnishaushalt 2026)
+
+metadata:
+  gemeinde: Nordstemmen
+  bundesland: Niedersachsen
+  landkreis: Hildesheim
+  einwohner: ~12500
+  quellen:
+    - name: Ratsinformationssystem Nordstemmen
+      url: https://nordstemmen.ratsinfomanagement.net
+      api: OParl v1.1
+    - name: MCP Server Nordstemmen
+      url: https://nordstemmen-mcp.levinkeller.de/mcp
+    - name: LSN-Online Datenbank
+      url: https://www1.nls.niedersachsen.de/statistik/
+      hinweis: "Für historische Gemeindefinanzdaten"
+
+# Ergebnishaushalt - Ordentliche Erträge (Einnahmen)
+# Quelle: DS 103/2025 1. Ergänzung - Ergebnishaushalt 2026
+# 2024 = Rechnungsergebnis (Ist-Werte), 2025-2029 = Planwerte
+ertraege:
+  steuern_und_abgaben:
+    name: "Steuern und ähnliche Abgaben"
+    beschreibung: "Grundsteuer A/B, Gewerbesteuer, Hundesteuer, Gemeindeanteil Einkommensteuer/Umsatzsteuer"
+    werte:
+      2024: 16723505  # Rechnungsergebnis (Ist)
+      2025: 14173300
+      2026: 13846300
+      2027: 14272000
+      2028: 14688700
+      2029: 15089600
+    einheit: EUR
+    typ: ist_2024_plan_ab_2025
+
+  zuwendungen_und_umlagen:
+    name: "Zuwendungen und allgemeine Umlagen"
+    beschreibung: "Zuweisungen vom Land, Finanzausgleich, Schlüsselzuweisungen"
+    werte:
+      2024: 7188693  # Rechnungsergebnis (Ist)
+      2025: 5662800
+      2026: 6619600
+      2027: 6556100
+      2028: 6529400
+      2029: 6529400
+    einheit: EUR
+
+  aufloesungsertraege_sonderposten:
+    name: "Auflösungserträge aus Sonderposten"
+    beschreibung: "Auflösung von Sonderposten für Investitionszuschüsse"
+    werte:
+      2024: 1024816  # Rechnungsergebnis (Ist)
+      2025: 795500
+      2026: 665500
+      2027: 617900
+      2028: 583000
+      2029: 565500
+    einheit: EUR
+
+  oeffentlich_rechtliche_entgelte:
+    name: "Öffentlich-rechtliche Entgelte"
+    beschreibung: "Gebühren, Beiträge, Verwaltungsgebühren"
+    werte:
+      2024: 2856361  # Rechnungsergebnis (Ist)
+      2025: 3059600
+      2026: 3076300
+      2027: 3077900
+      2028: 3079100
+      2029: 3081100
+    einheit: EUR
+
+  privatrechtliche_entgelte:
+    name: "Privatrechtliche Entgelte"
+    beschreibung: "Mieten, Pachten, sonstige privatrechtliche Erlöse"
+    werte:
+      2024: 186555  # Rechnungsergebnis (Ist)
+      2025: 208000
+      2026: 209400
+      2027: 207100
+      2028: 206400
+      2029: 206400
+    einheit: EUR
+
+  kostenerstattungen:
+    name: "Kostenerstattungen und Kostenumlagen"
+    beschreibung: "Erstattungen von anderen Gebietskörperschaften"
+    werte:
+      2024: 40879  # Rechnungsergebnis (Ist)
+      2025: 118100
+      2026: 49200
+      2027: 39200
+      2028: 31700
+      2029: 46700
+    einheit: EUR
+
+  zinsen_finanzertraege:
+    name: "Zinsen und ähnliche Finanzerträge"
+    beschreibung: "Zinserträge aus Geldanlagen"
+    werte:
+      2024: 100711  # Rechnungsergebnis (Ist)
+      2025: 66500
+      2026: 66500
+      2027: 66500
+      2028: 66500
+      2029: 66500
+    einheit: EUR
+
+  sonstige_ertraege:
+    name: "Sonstige ordentliche Erträge"
+    beschreibung: "Sonstige Einnahmen"
+    werte:
+      2024: 592455  # Rechnungsergebnis (Ist)
+      2025: 458600
+      2026: 454400
+      2027: 454500
+      2028: 454500
+      2029: 454500
+    einheit: EUR
+
+# Ergebnishaushalt - Ordentliche Aufwendungen (Ausgaben)
+# Quelle: DS 103/2025 1. Ergänzung - Ergebnishaushalt 2026
+aufwendungen:
+  personalaufwendungen:
+    name: "Personalaufwendungen"
+    beschreibung: "Gehälter, Löhne, Sozialversicherung, Versorgung"
+    werte:
+      2024: 5266258  # Rechnungsergebnis (inkl. Versorgung)
+      2025: 5423300
+      2026: 5953800
+      2027: 6126000
+      2028: 6308300
+      2029: 6499500
+    einheit: EUR
+
+  sach_und_dienstleistungen:
+    name: "Aufwendungen für Sach- und Dienstleistungen"
+    beschreibung: "Unterhaltung Grundstücke/Gebäude, Bewirtschaftung, Geschäftsbedarf"
+    werte:
+      2024: 4173485  # Rechnungsergebnis (Ist)
+      2025: 5089900
+      2026: 5921200
+      2027: 5190400
+      2028: 5308100
+      2029: 5151100
+    einheit: EUR
+
+  abschreibungen:
+    name: "Abschreibungen"
+    beschreibung: "Planmäßige Abschreibungen auf Vermögensgegenstände"
+    werte:
+      2024: 2365000  # Rechnungsergebnis (Ist)
+      2025: 2092300
+      2026: 2001200
+      2027: 1903200
+      2028: 1832700
+      2029: 1784400
+    einheit: EUR
+
+  zinsen_aufwendungen:
+    name: "Zinsen und ähnliche Aufwendungen"
+    beschreibung: "Zinsaufwendungen für Kredite"
+    werte:
+      2024: 711653  # Rechnungsergebnis (Ist)
+      2025: 848000
+      2026: 995000
+      2027: 1165000
+      2028: 1265000
+      2029: 1335000
+    einheit: EUR
+
+  transferaufwendungen:
+    name: "Transferaufwendungen"
+    beschreibung: "Kreisumlage, Zuweisungen an Dritte, Sozialleistungen"
+    werte:
+      2024: 14132827  # Rechnungsergebnis (Ist)
+      2025: 15030900
+      2026: 14089200
+      2027: 14244500
+      2028: 14406400
+      2029: 14568700
+    einheit: EUR
+
+  sonstige_aufwendungen:
+    name: "Sonstige ordentliche Aufwendungen"
+    beschreibung: "Versicherungen, Beiträge, sonstige Aufwendungen"
+    werte:
+      2024: 769905  # Rechnungsergebnis (Ist)
+      2025: 597400
+      2026: 778400
+      2027: 657100
+      2028: 633700
+      2029: 658700
+    einheit: EUR
+
+# Zusammenfassung
+zusammenfassung:
+  gesamtertraege:
+    name: "Summe ordentliche Erträge"
+    werte:
+      2024: 28713975  # Rechnungsergebnis (Ist)
+      2025: 24542400
+      2026: 24987200
+      2027: 25291200
+      2028: 25639300
+      2029: 26039700
+    einheit: EUR
+
+  gesamtaufwendungen:
+    name: "Summe ordentliche Aufwendungen"
+    werte:
+      2024: 27419127  # Rechnungsergebnis (Ist)
+      2025: 29081800
+      2026: 29738800
+      2027: 29286200
+      2028: 29754200
+      2029: 29997400
+    einheit: EUR
+
+  jahresergebnis:
+    name: "Jahresergebnis (Saldo)"
+    beschreibung: "Positiv = Überschuss, Negativ = Fehlbetrag"
+    werte:
+      2024: 1329323  # Rechnungsergebnis (Ist) - ÜBERSCHUSS!
+      2025: -4539400
+      2026: -4751600
+      2027: -3995000
+      2028: -4114900
+      2029: -3957700
+    einheit: EUR
+    hinweis: "2024 schloss mit Überschuss ab. Seit 2025 befindet sich die Gemeinde in der Haushaltssicherung"
+
+# Detaillierte Steuereinnahmen
+# Quelle: DS 89/2024 - Haushaltssicherungskonzept 2025
+steuern_detail:
+  grundsteuer_a:
+    name: "Grundsteuer A (Land- und Forstwirtschaft)"
+    hebesatz: 440
+    werte:
+      2024: 60000
+      2025: 60000
+      2026: 60000
+      2027: 60000
+      2028: 60000
+      2029: 60000
+    einheit: EUR
+
+  grundsteuer_b:
+    name: "Grundsteuer B (bebaute Grundstücke)"
+    hebesatz: 360
+    werte:
+      2024: 1775000
+      2025: 1921500
+      2026: 1921500
+      2027: 1921500
+      2028: 1921500
+      2029: 1921500
+    einheit: EUR
+
+  gewerbesteuer:
+    name: "Gewerbesteuer"
+    hebesatz: 420
+    werte:
+      2024: 3550000
+      2025: 3800000
+      2026: 3800000
+      2027: 3800000
+      2028: 3800000
+      2029: 3800000
+    einheit: EUR
+    hinweis: "Sehr volatil, abhängig von der Wirtschaftslage"
+
+  hundesteuer:
+    name: "Hundesteuer"
+    werte:
+      2024: 72150
+      2025: 89250
+      2026: 89250
+      2027: 89250
+      2028: 89250
+      2029: 89250
+    einheit: EUR
+    satze:
+      erster_hund: 96
+      zweiter_hund: 156
+      gefaehrlicher_hund: 600
+
+# Investitionen
+# Quelle: DS 89/2024 2. Ergänzung - Finanzhaushalt 2025
+investitionen:
+  einzahlungen_investition:
+    name: "Einzahlungen für Investitionen"
+    beschreibung: "Zuwendungen, Beiträge, Veräußerungserlöse"
+    werte:
+      2023: 678221
+      2024: 747500
+      2025: 2164800
+      2026: 410000
+      2027: 135500
+      2028: 25000
+      2029: 25000
+    einheit: EUR
+
+  auszahlungen_investition:
+    name: "Auszahlungen für Investitionen"
+    beschreibung: "Baumaßnahmen, Erwerb von Vermögensgegenständen"
+    werte:
+      2023: 3655756
+      2024: 4549000
+      2025: 5956200
+      2026: 2952700
+      2027: 1583200
+      2028: 1032500
+      2029: 1032500
+    einheit: EUR
+
+# Schuldenstand
+schulden:
+  kreditaufnahme:
+    name: "Kreditaufnahme im Haushaltsjahr"
+    werte:
+      2024: 1697800
+      2025: 1697800
+      2026: 0
+      2027: 0
+      2028: 0
+      2029: 0
+    einheit: EUR
+
+  liquiditaetskredite_hoechstbetrag:
+    name: "Höchstbetrag Liquiditätskredite"
+    werte:
+      2025: 6500000
+      2026: 6500000
+    einheit: EUR
+
+# Quellendokumente
+quellen_dokumente:
+  - referenz: "DS 103/2025 1. Ergänzung"
+    titel: "Ergebnishaushalt 2026"
+    datum: "2025-11-27"
+    pdf_url: "https://nordstemmen.ratsinfomanagement.net/sdnetrim/UGhVM0hpd2NXNFdFcExjZdWwuZYs8-DBp1bzhMIH0kSk9-DyJympMWH2s7ROrZoB/Anlage_3_Ergebnishaushalt_2026.pdf"
+    hinweis: "Hauptquelle für Daten 2024-2029"
+
+  - referenz: "DS 103/2025"
+    titel: "Haushaltssatzung und Haushaltsplan für das Haushaltsjahr 2026"
+    datum: "2025-11-18"
+    oparl_id: "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/paper/5775"
+
+  - referenz: "DS 89/2024"
+    titel: "Haushaltssatzung und Haushaltsplan für das Haushaltsjahr 2025"
+    datum: "2024-11-26"
+    pdf_url: "https://nordstemmen-mcp.levinkeller.de/pdf/a3c42c96326be36472ea24da68e3f56e4e49d9c6b9125ccabe2d52e14a54a420"
+
+  - referenz: "DS 89/2024 2. Ergänzung"
+    titel: "Haushaltssatzung und Haushaltsplan für das Haushaltsjahr 2025 (Endfassung)"
+    datum: "2024-12-17"
+    pdf_url: "https://nordstemmen-mcp.levinkeller.de/pdf/f42578e8afb5426b404363f3bf140512e7a63a0095b1110131ab566468b694ef"
+
+  - referenz: "DS 85/2023"
+    titel: "Haushaltssatzung und Haushaltsplan für das Haushaltsjahr 2024"
+    datum: "2023-12-19"
+    pdf_url: "https://nordstemmen-mcp.levinkeller.de/pdf/bd51cbcb2c1314c9e871beec225f661105044db83ea8b4ec99f8995712b09bbf"

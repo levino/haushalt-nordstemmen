@@ -1,0 +1,139 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { formatMioEUR } from '../lib/format';
+
+const haushalte = await getCollection('haushalte');
+const sortedHaushalte = haushalte.sort((a, b) => b.data.jahr - a.data.jahr);
+
+const aktuell = sortedHaushalte.find(h => h.data.jahr === 2026);
+const istjahr = sortedHaushalte.find(h => h.data.typ === 'ist');
+---
+
+<Layout title="Startseite">
+  <section class="hero">
+    <div class="container">
+      <h1>Haushalt Nordstemmen</h1>
+      <p>Transparente Visualisierung des Gemeindehaushalts mit interaktiven Sankey-Diagrammen</p>
+      <div class="hero-buttons">
+        <a href="/haushalt/2026" class="btn btn-primary">Haushalt 2026</a>
+        <a href="/sankey" class="btn btn-secondary">Sankey-Diagramme</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Aktuelle Haushaltslage</h2>
+
+      <div class="alert alert-warning">
+        <strong>Haushaltssicherung:</strong> Die Gemeinde Nordstemmen befindet sich seit 2025 in der Haushaltssicherung.
+        Der Haushaltsplan 2026 weist einen geplanten Fehlbetrag von {formatMioEUR(Math.abs(aktuell?.data.summen.jahresergebnis || 0))} aus.
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value positive">{formatMioEUR(aktuell?.data.summen.gesamtertraege || 0)}</div>
+          <div class="stat-label">Einnahmen 2026 (Plan)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value negative">{formatMioEUR(aktuell?.data.summen.gesamtaufwendungen || 0)}</div>
+          <div class="stat-label">Ausgaben 2026 (Plan)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value negative">{formatMioEUR(aktuell?.data.summen.jahresergebnis || 0)}</div>
+          <div class="stat-label">Fehlbetrag 2026 (Plan)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value positive">{formatMioEUR(istjahr?.data.summen.jahresergebnis || 0)}</div>
+          <div class="stat-label">Ergebnis 2024 (Ist)</div>
+        </div>
+      </div>
+
+      <h3>Jahresvergleich</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Jahr</th>
+            <th>Typ</th>
+            <th class="number">Einnahmen</th>
+            <th class="number">Ausgaben</th>
+            <th class="number">Ergebnis</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sortedHaushalte.map(h => (
+            <tr>
+              <td><a href={`/haushalt/${h.data.jahr}`}>{h.data.jahr}</a></td>
+              <td>{h.data.typ === 'ist' ? 'Ist' : 'Plan'}</td>
+              <td class="number">{formatMioEUR(h.data.summen.gesamtertraege)}</td>
+              <td class="number">{formatMioEUR(h.data.summen.gesamtaufwendungen)}</td>
+              <td class={`number ${h.data.summen.jahresergebnis >= 0 ? 'positive' : 'negative'}`}>
+                {formatMioEUR(h.data.summen.jahresergebnis)}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-bg-alt);">
+    <div class="container">
+      <h2 class="section-title">Schnellzugriff</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Einnahmen</h3>
+          <p>Woher kommt das Geld? Steuern, Zuweisungen, Gebühren - alle Einnahmequellen auf einen Blick.</p>
+          <a href="/einnahmen" class="btn btn-primary">Einnahmen ansehen</a>
+        </div>
+        <div class="card">
+          <h3>Ausgaben</h3>
+          <p>Wofür wird das Geld verwendet? Personal, Sachkosten, Transfers - die größten Ausgabenposten.</p>
+          <a href="/ausgaben" class="btn btn-primary">Ausgaben ansehen</a>
+        </div>
+        <div class="card">
+          <h3>Sankey-Diagramme</h3>
+          <p>Visualisierung des Geldflusses: Von den Einnahmen zu den Ausgaben in interaktiven Diagrammen.</p>
+          <a href="/sankey" class="btn btn-primary">Diagramme ansehen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Datenquellen</h2>
+      <p>
+        Alle Daten stammen aus den offiziellen Haushaltsplänen der Gemeinde Nordstemmen,
+        abrufbar über das <a href="https://nordstemmen.ratsinfomanagement.net" target="_blank">Ratsinformationssystem</a>.
+      </p>
+      <p>
+        Hauptquelle: <strong>DS 103/2025</strong> - Haushaltssatzung und Haushaltsplan für das Haushaltsjahr 2026
+        sowie die Aufstellung eines Haushaltssicherungskonzeptes (Stand: 27.11.2025)
+      </p>
+      <a href="/daten" class="btn btn-secondary">Alle Datenquellen</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .alert {
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+
+  .alert-warning {
+    background: #fefce8;
+    border: 1px solid #fde047;
+    color: #854d0e;
+  }
+</style>

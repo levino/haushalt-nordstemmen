@@ -1,0 +1,126 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { formatEUR, formatMioEUR, aufwendungenLabels } from '../lib/format';
+
+const haushalte = await getCollection('haushalte');
+const sortedHaushalte = haushalte.sort((a, b) => b.data.jahr - a.data.jahr);
+const jahre = sortedHaushalte.map(h => h.data.jahr);
+
+const aufwendungenKeys = Object.keys(aufwendungenLabels);
+---
+
+<Layout title="Ausgaben">
+  <section class="section">
+    <div class="container">
+      <h1>Ausgaben der Gemeinde Nordstemmen</h1>
+      <p>
+        Übersicht aller ordentlichen Aufwendungen im Ergebnishaushalt.
+        Die Werte sind in EUR angegeben.
+      </p>
+
+      <h2>Ausgaben nach Kategorien</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Kategorie</th>
+              {jahre.map(jahr => (
+                <th class="number">{jahr}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {aufwendungenKeys.map(key => (
+              <tr>
+                <td>{aufwendungenLabels[key]}</td>
+                {sortedHaushalte.map(h => (
+                  <td class="number">{formatEUR((h.data.aufwendungen as any)[key] || 0)}</td>
+                ))}
+              </tr>
+            ))}
+            <tr class="total-row">
+              <td><strong>Summe Aufwendungen</strong></td>
+              {sortedHaushalte.map(h => (
+                <td class="number"><strong>{formatEUR(h.data.summen.gesamtaufwendungen)}</strong></td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Ausgabenstruktur 2026</h2>
+      <div class="card-grid">
+        {aufwendungenKeys.map(key => {
+          const aktuell = sortedHaushalte.find(h => h.data.jahr === 2026);
+          const value = aktuell ? (aktuell.data.aufwendungen as any)[key] || 0 : 0;
+          const total = aktuell ? aktuell.data.summen.gesamtaufwendungen : 1;
+          const percent = ((value / total) * 100).toFixed(1);
+          return (
+            <div class="card">
+              <h3>{aufwendungenLabels[key]}</h3>
+              <div class="stat-value negative">{formatMioEUR(value)}</div>
+              <div class="stat-label">{percent}% der Gesamtausgaben</div>
+              <div class="progress-bar">
+                <div class="progress" style={`width: ${percent}%`}></div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <h2>Erläuterungen</h2>
+      <div class="card">
+        <h3>Transferaufwendungen (größter Posten)</h3>
+        <p>
+          Umfasst die Kreisumlage an den Landkreis Hildesheim, Zuweisungen an
+          Dritte, Sozialleistungen und andere Transfers. Dies ist mit Abstand
+          der größte Ausgabenposten der Gemeinde.
+        </p>
+
+        <h3>Personalaufwendungen</h3>
+        <p>
+          Gehälter und Löhne für Gemeindemitarbeiter, Sozialversicherungsbeiträge,
+          Versorgungsaufwendungen für Pensionäre.
+        </p>
+
+        <h3>Sach- und Dienstleistungen</h3>
+        <p>
+          Unterhaltung von Grundstücken und Gebäuden, Bewirtschaftungskosten,
+          Geschäftsbedarf, Fahrzeuge, externe Dienstleistungen.
+        </p>
+
+        <h3>Zinsaufwendungen</h3>
+        <p>
+          Zinszahlungen für aufgenommene Kredite. Die Zinslast steigt in den
+          kommenden Jahren aufgrund neuer Kreditaufnahmen.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .total-row {
+    background: var(--color-bg-alt);
+    border-top: 2px solid var(--color-border);
+  }
+
+  .progress-bar {
+    background: #e2e8f0;
+    border-radius: 4px;
+    height: 8px;
+    margin-top: 0.5rem;
+    overflow: hidden;
+  }
+
+  .progress {
+    background: var(--color-danger);
+    height: 100%;
+    transition: width 0.3s;
+  }
+</style>

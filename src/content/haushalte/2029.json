@@ -1,0 +1,28 @@
+{
+  "jahr": 2029,
+  "typ": "plan",
+  "quelle": "DS 103/2025 - Mittelfristige Finanzplanung",
+  "ertraege": {
+    "steuern_und_abgaben": 15089600,
+    "zuwendungen_und_umlagen": 6529400,
+    "aufloesungsertraege_sonderposten": 565500,
+    "oeffentlich_rechtliche_entgelte": 3081100,
+    "privatrechtliche_entgelte": 206400,
+    "kostenerstattungen": 46700,
+    "zinsen_finanzertraege": 66500,
+    "sonstige_ertraege": 454500
+  },
+  "aufwendungen": {
+    "personalaufwendungen": 6499500,
+    "sach_und_dienstleistungen": 5151100,
+    "abschreibungen": 1784400,
+    "zinsen_aufwendungen": 1335000,
+    "transferaufwendungen": 14568700,
+    "sonstige_aufwendungen": 658700
+  },
+  "summen": {
+    "gesamtertraege": 26039700,
+    "gesamtaufwendungen": 29997400,
+    "jahresergebnis": -3957700
+  }
+}

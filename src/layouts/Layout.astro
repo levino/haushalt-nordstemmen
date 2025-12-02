@@ -1,0 +1,134 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Transparente Visualisierung des Gemeindehaushalts Nordstemmen" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title} | Haushalt Nordstemmen</title>
+    <link rel="stylesheet" href="/styles/global.css" />
+    <script type="module" is:inline>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'default',
+        sankey: {
+          showValues: true,
+          width: 900,
+          height: 400,
+          linkColor: 'gradient',
+          nodeAlignment: 'justify',
+        },
+      });
+    </script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <a href="/" class="logo">Haushalt Nordstemmen</a>
+        <div class="nav-links">
+          <a href="/">Start</a>
+          <a href="/haushalt/2026">2026</a>
+          <a href="/haushalt/2025">2025</a>
+          <a href="/einnahmen">Einnahmen</a>
+          <a href="/ausgaben">Ausgaben</a>
+          <a href="/sankey">Sankey</a>
+          <a href="/daten">Daten</a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>Datenquelle: <a href="https://nordstemmen.ratsinfomanagement.net" target="_blank">Ratsinformationssystem Nordstemmen</a></p>
+        <p>Alle Daten aus offiziellen Haushaltsplandokumenten der Gemeinde Nordstemmen.</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .navbar {
+    background: #1a365d;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .logo {
+    color: white;
+    font-weight: bold;
+    font-size: 1.25rem;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .nav-links a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: white;
+  }
+
+  main {
+    min-height: calc(100vh - 200px);
+  }
+
+  footer {
+    background: #f7fafc;
+    border-top: 1px solid #e2e8f0;
+    padding: 2rem 0;
+    margin-top: 3rem;
+  }
+
+  footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    text-align: center;
+    color: #718096;
+    font-size: 0.875rem;
+  }
+
+  footer a {
+    color: #4a5568;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.875rem;
+    }
+  }
+</style>
