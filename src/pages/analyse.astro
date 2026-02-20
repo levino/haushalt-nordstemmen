@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import { formatMioEUR, formatEUR, ertraegeLabels, aufwendungenLabels } from '../lib/format';
+import { formatMioEUR, ertraegeLabels, aufwendungenLabels } from '../lib/format';
 
 const haushalte = await getCollection('haushalte');
 const sortedHaushalte = haushalte.sort((a, b) => a.data.jahr - b.data.jahr);

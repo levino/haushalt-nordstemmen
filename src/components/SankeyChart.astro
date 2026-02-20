@@ -180,16 +180,16 @@ const chartId = `sankey-${Math.random().toString(36).slice(2, 8)}`;
       .attr('d', sankeyLinkHorizontal())
       .attr('stroke', (d: any) => linkColor(d))
       .attr('stroke-width', (d: any) => Math.max(1, d.width))
-      .on('mouseover', function(event: MouseEvent, d: any) {
-        d3.select(this).attr('stroke-opacity', 0.6);
+      .on('mouseover', (event: MouseEvent, d: any) => {
+        d3.select(event.currentTarget as SVGPathElement).attr('stroke-opacity', 0.6);
         tooltip
           .html(`${d.source.name} → ${d.target.name}<br><strong>${formatTausend(d.value)}</strong>`)
           .style('left', (event.offsetX + 10) + 'px')
           .style('top', (event.offsetY - 30) + 'px')
           .style('opacity', 1);
       })
-      .on('mouseout', function() {
-        d3.select(this).attr('stroke-opacity', 0.3);
+      .on('mouseout', (event: MouseEvent) => {
+        d3.select(event.currentTarget as SVGPathElement).attr('stroke-opacity', 0.3);
         tooltip.style('opacity', 0);
       });
 

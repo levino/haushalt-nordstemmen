@@ -9,7 +9,6 @@ const sortedHaushalte = haushalte.sort((a, b) => b.data.jahr - a.data.jahr);
 const aktuell = sortedHaushalte.find(h => h.data.jahr === 2026);
 const istHaushalte = sortedHaushalte.filter(h => h.data.typ === 'ist');
 const letztesIst = istHaushalte[0];
-const planHaushalte = sortedHaushalte.filter(h => h.data.typ === 'plan');
 ---
 
 <Layout title="Startseite">
