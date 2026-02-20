@@ -1,0 +1,29 @@
+{
+  "jahr": 2013,
+  "typ": "ist",
+  "quelle": "DS 97/2016 - Jahresabschluss 2013",
+  "quelle_url": "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/files/UGhVM0hpd2NXNFdFcExjZc9B3DZ5r-7nj1PKuSbAaBdFgupGQE_bGuAAXibB7E74/Anlage_2_zur_Beschlussvorlage_DS_97-2016.pdf",
+  "ertraege": {
+    "steuern_und_abgaben": 12900789,
+    "zuwendungen_und_umlagen": 3749704,
+    "aufloesungsertraege_sonderposten": 432603,
+    "oeffentlich_rechtliche_entgelte": 2378584,
+    "privatrechtliche_entgelte": 89910,
+    "kostenerstattungen": 76458,
+    "zinsen_finanzertraege": 44167,
+    "sonstige_ertraege": 1073559
+  },
+  "aufwendungen": {
+    "personalaufwendungen": 4037864,
+    "sach_und_dienstleistungen": 2319327,
+    "abschreibungen": 2216296,
+    "zinsen_aufwendungen": 942607,
+    "transferaufwendungen": 9582709,
+    "sonstige_aufwendungen": 481748
+  },
+  "summen": {
+    "gesamtertraege": 21290138,
+    "gesamtaufwendungen": 19580551,
+    "jahresergebnis": 1709587
+  }
+}

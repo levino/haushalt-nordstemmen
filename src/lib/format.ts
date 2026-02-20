@@ -32,7 +32,7 @@ export const ertraegeLabels: Record<string, string> = {
   steuern_und_abgaben: 'Steuern',
   zuwendungen_und_umlagen: 'Zuwendungen',
   aufloesungsertraege_sonderposten: 'Sonderposten',
-  oeffentlich_rechtliche_entgelte: 'Gebuehren',
+  oeffentlich_rechtliche_entgelte: 'Entgelte',
   privatrechtliche_entgelte: 'Privatentgelte',
   kostenerstattungen: 'Erstattungen',
   zinsen_finanzertraege: 'Zinsen',

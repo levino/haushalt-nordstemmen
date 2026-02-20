@@ -1,0 +1,29 @@
+{
+  "jahr": 2014,
+  "typ": "ist",
+  "quelle": "DS 136/2017 - Jahresabschluss 2014",
+  "quelle_url": "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/files/UGhVM0hpd2NXNFdFcExjZSUDw_dkUAr6cHlgxlXzW2-n4Xtr-9XMSgqVw-bK8r2-/Anlage_zu_DS_136-2017_Jahresabschluss_2014.pdf",
+  "ertraege": {
+    "steuern_und_abgaben": 10199993,
+    "zuwendungen_und_umlagen": 2199674,
+    "aufloesungsertraege_sonderposten": 820823,
+    "oeffentlich_rechtliche_entgelte": 2369937,
+    "privatrechtliche_entgelte": 155535,
+    "kostenerstattungen": 41211,
+    "zinsen_finanzertraege": 77312,
+    "sonstige_ertraege": 673409
+  },
+  "aufwendungen": {
+    "personalaufwendungen": 3678952,
+    "sach_und_dienstleistungen": 2226664,
+    "abschreibungen": 1816634,
+    "zinsen_aufwendungen": 849498,
+    "transferaufwendungen": 7682561,
+    "sonstige_aufwendungen": 421692
+  },
+  "summen": {
+    "gesamtertraege": 16829642,
+    "gesamtaufwendungen": 16676002,
+    "jahresergebnis": 153639
+  }
+}

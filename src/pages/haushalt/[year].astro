@@ -53,7 +53,11 @@ function generateSankey(data: any, year: number): string {
       </div>
 
       <h1>Haushalt {year} {haushalt.typ === 'ist' ? '(Ist-Ergebnis)' : '(Plan)'}</h1>
-      <p class="source">Quelle: {haushalt.quelle}</p>
+      <p class="source">
+        Quelle: {haushalt.quelle_url
+          ? <a href={haushalt.quelle_url} target="_blank">{haushalt.quelle}</a>
+          : haushalt.quelle}
+      </p>
 
       <div class="stats-grid">
         <div class="stat-card">

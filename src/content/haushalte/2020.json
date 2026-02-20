@@ -1,0 +1,29 @@
+{
+  "jahr": 2020,
+  "typ": "ist",
+  "quelle": "DS 124/2022 - Jahresabschluss 2020",
+  "quelle_url": "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/files/UGhVM0hpd2NXNFdFcExjZfnadHJKSdM7pMWv8PZXEa5tDtWSi79wnAeSsFdJFxaA/Bericht_Nordstemmen_JA_2020_Final.pdf",
+  "ertraege": {
+    "steuern_und_abgaben": 11267132,
+    "zuwendungen_und_umlagen": 6905894,
+    "aufloesungsertraege_sonderposten": 808329,
+    "oeffentlich_rechtliche_entgelte": 3139378,
+    "privatrechtliche_entgelte": 155540,
+    "kostenerstattungen": 51900,
+    "zinsen_finanzertraege": 119659,
+    "sonstige_ertraege": 554816
+  },
+  "aufwendungen": {
+    "personalaufwendungen": 5374008,
+    "sach_und_dienstleistungen": 3662707,
+    "abschreibungen": 2051267,
+    "zinsen_aufwendungen": 697558,
+    "transferaufwendungen": 10697725,
+    "sonstige_aufwendungen": 507365
+  },
+  "summen": {
+    "gesamtertraege": 23173812,
+    "gesamtaufwendungen": 22990629,
+    "jahresergebnis": 183183
+  }
+}

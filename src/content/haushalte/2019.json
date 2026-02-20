@@ -1,0 +1,29 @@
+{
+  "jahr": 2019,
+  "typ": "ist",
+  "quelle": "DS 123/2022 - Jahresabschluss 2019",
+  "quelle_url": "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/files/UGhVM0hpd2NXNFdFcExjZS8-lt3GpRRmHcQyQC2SzQmxyR1S0VoShA9ouafVVT4Z/Nordstemmen_Bericht_JA_2019_mit_Unterschrift.pdf",
+  "ertraege": {
+    "steuern_und_abgaben": 10833215,
+    "zuwendungen_und_umlagen": 4462570,
+    "aufloesungsertraege_sonderposten": 806789,
+    "oeffentlich_rechtliche_entgelte": 3193382,
+    "privatrechtliche_entgelte": 185767,
+    "kostenerstattungen": 70750,
+    "zinsen_finanzertraege": 59912,
+    "sonstige_ertraege": 745110
+  },
+  "aufwendungen": {
+    "personalaufwendungen": 4396292,
+    "sach_und_dienstleistungen": 3525591,
+    "abschreibungen": 2147176,
+    "zinsen_aufwendungen": 744637,
+    "transferaufwendungen": 10275191,
+    "sonstige_aufwendungen": 447652
+  },
+  "summen": {
+    "gesamtertraege": 20383986,
+    "gesamtaufwendungen": 21540668,
+    "jahresergebnis": -1156681
+  }
+}

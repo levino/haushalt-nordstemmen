@@ -1,0 +1,29 @@
+{
+  "jahr": 2022,
+  "typ": "ist",
+  "quelle": "DS 56/2023 - Vorläufiger Jahresabschluss 2022",
+  "quelle_url": "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/files/UGhVM0hpd2NXNFdFcExjZRR2HPEZ6HdsmEX7rL76qRQVn5yOHxdaXcGCuesNYYk7/Anlage_3_vorlaeufige_Bilanz_2022.pdf",
+  "ertraege": {
+    "steuern_und_abgaben": 12788673,
+    "zuwendungen_und_umlagen": 6623972,
+    "aufloesungsertraege_sonderposten": 826609,
+    "oeffentlich_rechtliche_entgelte": 3012270,
+    "privatrechtliche_entgelte": 225140,
+    "kostenerstattungen": 115661,
+    "zinsen_finanzertraege": 63586,
+    "sonstige_ertraege": 626530
+  },
+  "aufwendungen": {
+    "personalaufwendungen": 4704441,
+    "sach_und_dienstleistungen": 3569939,
+    "abschreibungen": 2138006,
+    "zinsen_aufwendungen": 572185,
+    "transferaufwendungen": 11959100,
+    "sonstige_aufwendungen": 803913
+  },
+  "summen": {
+    "gesamtertraege": 24315859,
+    "gesamtaufwendungen": 23747585,
+    "jahresergebnis": 568274
+  }
+}

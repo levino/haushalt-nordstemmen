@@ -1,0 +1,343 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { formatMioEUR, formatEUR, ertraegeLabels, aufwendungenLabels } from '../lib/format';
+
+const haushalte = await getCollection('haushalte');
+const sortedHaushalte = haushalte.sort((a, b) => a.data.jahr - b.data.jahr);
+const istHaushalte = sortedHaushalte.filter(h => h.data.typ === 'ist');
+const planHaushalte = sortedHaushalte.filter(h => h.data.typ === 'plan');
+
+// Berechne Veränderungen
+const erstesJahr = istHaushalte[0]?.data;
+const letztesIst = istHaushalte[istHaushalte.length - 1]?.data;
+
+// Kategorien mit stärkstem Wachstum bei Aufwendungen
+const aufwendungenKeys = Object.keys(aufwendungenLabels);
+const aufwendungenWachstum = aufwendungenKeys.map(key => {
+  const start = (erstesJahr?.aufwendungen as any)?.[key] || 0;
+  const end = (letztesIst?.aufwendungen as any)?.[key] || 0;
+  const veraenderung = end - start;
+  const prozent = start > 0 ? ((end / start - 1) * 100) : 0;
+  return { key, label: aufwendungenLabels[key], start, end, veraenderung, prozent };
+}).sort((a, b) => b.veraenderung - a.veraenderung);
+
+const ertraegeKeys = Object.keys(ertraegeLabels);
+const ertraegeWachstum = ertraegeKeys.map(key => {
+  const start = (erstesJahr?.ertraege as any)?.[key] || 0;
+  const end = (letztesIst?.ertraege as any)?.[key] || 0;
+  const veraenderung = end - start;
+  const prozent = start > 0 ? ((end / start - 1) * 100) : 0;
+  return { key, label: ertraegeLabels[key], start, end, veraenderung, prozent };
+}).sort((a, b) => b.veraenderung - a.veraenderung);
+
+// Defizitjahre zählen
+const defizitJahre = istHaushalte.filter(h => h.data.summen.jahresergebnis < 0);
+const ueberschussJahre = istHaushalte.filter(h => h.data.summen.jahresergebnis >= 0);
+const kumuliertesErgebnis = istHaushalte.reduce((sum, h) => sum + h.data.summen.jahresergebnis, 0);
+
+// Transfer-Quote berechnen
+const transferQuote2024 = letztesIst
+  ? ((letztesIst.aufwendungen.transferaufwendungen / letztesIst.summen.gesamtaufwendungen) * 100).toFixed(1)
+  : '0';
+const transferQuote2010 = erstesJahr
+  ? ((erstesJahr.aufwendungen.transferaufwendungen / erstesJahr.summen.gesamtaufwendungen) * 100).toFixed(1)
+  : '0';
+---
+
+<Layout title="Analyse">
+  <section class="section">
+    <div class="container">
+      <h1>Haushaltsanalyse Nordstemmen</h1>
+      <p>
+        Wie hat sich der Haushalt der Gemeinde Nordstemmen seit 2010 entwickelt?
+        Woher kommen die geplanten Defizite ab 2025?
+      </p>
+
+      <h2>Gesamtbild {erstesJahr?.jahr}-{letztesIst?.jahr}</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value">{istHaushalte.length}</div>
+          <div class="stat-label">Jahre mit Ist-Daten</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value positive">{ueberschussJahre.length}</div>
+          <div class="stat-label">Jahre mit Überschuss</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value negative">{defizitJahre.length}</div>
+          <div class="stat-label">Jahre mit Defizit</div>
+        </div>
+        <div class="stat-card">
+          <div class={`stat-value ${kumuliertesErgebnis >= 0 ? 'positive' : 'negative'}`}>
+            {formatMioEUR(kumuliertesErgebnis)}
+          </div>
+          <div class="stat-label">Kumuliertes Ergebnis</div>
+        </div>
+      </div>
+
+      <h2>Jahresergebnisse</h2>
+      <div class="bar-chart">
+        {sortedHaushalte.map(h => {
+          const maxAbs = Math.max(...sortedHaushalte.map(x => Math.abs(x.data.summen.jahresergebnis)));
+          const pct = (Math.abs(h.data.summen.jahresergebnis) / maxAbs) * 100;
+          const isPositive = h.data.summen.jahresergebnis >= 0;
+          const isPlan = h.data.typ === 'plan';
+          return (
+            <div class={`bar-row ${isPlan ? 'plan-row' : ''}`}>
+              <div class="bar-label">
+                <a href={`/haushalt/${h.data.jahr}`}>{h.data.jahr}</a>
+                {isPlan && <span class="badge-plan-sm">P</span>}
+              </div>
+              <div class="bar-container">
+                {isPositive ? (
+                  <div class="bar-negative-space"></div>
+                  <div class="bar-positive-space">
+                    <div class={`bar bar-positive ${isPlan ? 'bar-faded' : ''}`} style={`width: ${pct}%`}></div>
+                  </div>
+                ) : (
+                  <div class="bar-negative-space" style="justify-content: flex-end;">
+                    <div class={`bar bar-negative ${isPlan ? 'bar-faded' : ''}`} style={`width: ${pct}%`}></div>
+                  </div>
+                  <div class="bar-positive-space"></div>
+                )}
+              </div>
+              <div class={`bar-value ${isPositive ? 'positive' : 'negative'}`}>
+                {formatMioEUR(h.data.summen.jahresergebnis)}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <h2>Ausgabentreiber: Was wächst am stärksten?</h2>
+      <p>
+        Veränderung der Aufwendungen von {erstesJahr?.jahr} bis {letztesIst?.jahr} (Ist-Werte):
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Kategorie</th>
+            <th class="number">{erstesJahr?.jahr}</th>
+            <th class="number">{letztesIst?.jahr}</th>
+            <th class="number">Veränderung</th>
+            <th class="number">Wachstum</th>
+          </tr>
+        </thead>
+        <tbody>
+          {aufwendungenWachstum.map(item => (
+            <tr>
+              <td>{item.label}</td>
+              <td class="number">{formatMioEUR(item.start)}</td>
+              <td class="number">{formatMioEUR(item.end)}</td>
+              <td class={`number ${item.veraenderung >= 0 ? 'negative' : 'positive'}`}>
+                {item.veraenderung >= 0 ? '+' : ''}{formatMioEUR(item.veraenderung)}
+              </td>
+              <td class="number">{item.prozent >= 0 ? '+' : ''}{item.prozent.toFixed(0)}%</td>
+            </tr>
+          ))}
+          <tr class="total-row">
+            <td><strong>Summe</strong></td>
+            <td class="number"><strong>{formatMioEUR(erstesJahr?.summen.gesamtaufwendungen || 0)}</strong></td>
+            <td class="number"><strong>{formatMioEUR(letztesIst?.summen.gesamtaufwendungen || 0)}</strong></td>
+            <td class="number negative">
+              <strong>+{formatMioEUR((letztesIst?.summen.gesamtaufwendungen || 0) - (erstesJahr?.summen.gesamtaufwendungen || 0))}</strong>
+            </td>
+            <td class="number">
+              <strong>+{(((letztesIst?.summen.gesamtaufwendungen || 1) / (erstesJahr?.summen.gesamtaufwendungen || 1) - 1) * 100).toFixed(0)}%</strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Einnahmenentwicklung</h2>
+      <p>
+        Veränderung der Erträge von {erstesJahr?.jahr} bis {letztesIst?.jahr} (Ist-Werte):
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Kategorie</th>
+            <th class="number">{erstesJahr?.jahr}</th>
+            <th class="number">{letztesIst?.jahr}</th>
+            <th class="number">Veränderung</th>
+            <th class="number">Wachstum</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ertraegeWachstum.map(item => (
+            <tr>
+              <td>{item.label}</td>
+              <td class="number">{formatMioEUR(item.start)}</td>
+              <td class="number">{formatMioEUR(item.end)}</td>
+              <td class={`number ${item.veraenderung >= 0 ? 'positive' : 'negative'}`}>
+                {item.veraenderung >= 0 ? '+' : ''}{formatMioEUR(item.veraenderung)}
+              </td>
+              <td class="number">{item.prozent >= 0 ? '+' : ''}{item.prozent.toFixed(0)}%</td>
+            </tr>
+          ))}
+          <tr class="total-row">
+            <td><strong>Summe</strong></td>
+            <td class="number"><strong>{formatMioEUR(erstesJahr?.summen.gesamtertraege || 0)}</strong></td>
+            <td class="number"><strong>{formatMioEUR(letztesIst?.summen.gesamtertraege || 0)}</strong></td>
+            <td class="number positive">
+              <strong>+{formatMioEUR((letztesIst?.summen.gesamtertraege || 0) - (erstesJahr?.summen.gesamtertraege || 0))}</strong>
+            </td>
+            <td class="number">
+              <strong>+{(((letztesIst?.summen.gesamtertraege || 1) / (erstesJahr?.summen.gesamtertraege || 1) - 1) * 100).toFixed(0)}%</strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Kernaussagen</h2>
+
+      <div class="card insight-card">
+        <h3>Transferaufwendungen dominieren den Haushalt</h3>
+        <p>
+          Die Transferaufwendungen (v.a. Kreisumlage) sind der mit Abstand größte Ausgabenposten.
+          Sie stiegen von {formatMioEUR(erstesJahr?.aufwendungen.transferaufwendungen || 0)} ({erstesJahr?.jahr})
+          auf {formatMioEUR(letztesIst?.aufwendungen.transferaufwendungen || 0)} ({letztesIst?.jahr}).
+          Das entspricht {transferQuote2024}% aller Ausgaben (Vorher: {transferQuote2010}%).
+        </p>
+      </div>
+
+      <div class="card insight-card">
+        <h3>Personalkosten steigen kontinuierlich</h3>
+        <p>
+          Die Personalaufwendungen haben sich von {formatMioEUR(erstesJahr?.aufwendungen.personalaufwendungen || 0)}
+          auf {formatMioEUR(letztesIst?.aufwendungen.personalaufwendungen || 0)} fast verdoppelt.
+          Dies reflektiert Tarifsteigerungen, erweiterte Aufgaben (z.B. Kinderbetreuung) und zusätzliches Personal.
+        </p>
+      </div>
+
+      <div class="card insight-card">
+        <h3>Einnahmen halten nicht Schritt</h3>
+        <p>
+          Zwar sind die Gesamteinnahmen von {formatMioEUR(erstesJahr?.summen.gesamtertraege || 0)}
+          auf {formatMioEUR(letztesIst?.summen.gesamtertraege || 0)} gestiegen, aber
+          die Ausgaben wachsen schneller. Ab 2025 wird ein strukturelles Defizit prognostiziert,
+          das zur Haushaltssicherung führt.
+        </p>
+      </div>
+
+      <div class="card insight-card">
+        <h3>Geplante Defizite 2025-2029</h3>
+        <p>
+          Die Finanzplanung sieht jährliche Fehlbeträge zwischen
+          {formatMioEUR(Math.min(...planHaushalte.map(h => h.data.summen.jahresergebnis)))} und
+          {formatMioEUR(Math.max(...planHaushalte.map(h => h.data.summen.jahresergebnis)))} vor.
+          Haupttreiber sind steigende Transferaufwendungen und Personalkosten bei
+          gleichzeitig sinkenden Steuereinnahmen-Erwartungen gegenüber dem Rekordjahr 2024.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .bar-chart {
+    margin: 2rem 0;
+  }
+
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+    height: 1.75rem;
+  }
+
+  .bar-label {
+    width: 4rem;
+    text-align: right;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  .bar-label a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .bar-label a:hover {
+    color: var(--color-primary);
+  }
+
+  .badge-plan-sm {
+    display: inline-block;
+    font-size: 0.6rem;
+    background: #bee3f8;
+    color: #2a4365;
+    padding: 0 0.25rem;
+    border-radius: 2px;
+    margin-left: 0.25rem;
+    vertical-align: super;
+  }
+
+  .bar-container {
+    flex: 1;
+    display: flex;
+    height: 100%;
+  }
+
+  .bar-negative-space,
+  .bar-positive-space {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .bar-negative-space {
+    justify-content: flex-end;
+  }
+
+  .bar {
+    height: 1.25rem;
+    border-radius: 2px;
+    min-width: 2px;
+    transition: width 0.3s;
+  }
+
+  .bar-positive {
+    background: var(--color-success);
+  }
+
+  .bar-negative {
+    background: var(--color-danger);
+  }
+
+  .bar-faded {
+    opacity: 0.5;
+  }
+
+  .bar-value {
+    width: 7rem;
+    text-align: right;
+    font-size: 0.8rem;
+    font-family: monospace;
+    flex-shrink: 0;
+  }
+
+  .plan-row {
+    opacity: 0.7;
+  }
+
+  .total-row {
+    background: var(--color-bg-alt);
+    border-top: 2px solid var(--color-border);
+  }
+
+  .insight-card {
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .insight-card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+</style>

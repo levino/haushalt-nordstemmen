@@ -11,8 +11,8 @@ metadata:
     - name: Ratsinformationssystem Nordstemmen
       url: https://nordstemmen.ratsinfomanagement.net
       api: OParl v1.1
-    - name: MCP Server Nordstemmen
-      url: https://nordstemmen-mcp.levinkeller.de/mcp
+    - name: MCP Server Nordstemmen (Claude Code Integration)
+      hinweis: "Semantische Suche über alle Ratsdokumente via Model Context Protocol"
     - name: LSN-Online Datenbank
       url: https://www1.nls.niedersachsen.de/statistik/
       hinweis: "Für historische Gemeindefinanzdaten"
@@ -350,14 +350,17 @@ quellen_dokumente:
   - referenz: "DS 89/2024"
     titel: "Haushaltssatzung und Haushaltsplan für das Haushaltsjahr 2025"
     datum: "2024-11-26"
-    pdf_url: "https://nordstemmen-mcp.levinkeller.de/pdf/a3c42c96326be36472ea24da68e3f56e4e49d9c6b9125ccabe2d52e14a54a420"
+    pdf_url: "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/files/UGhVM0hpd2NXNFdFcExjZT2n5kH_IMAo3SJS9S_4G-hgCdUSuAcxa4yGKb9U2xMO/Anlage_1_Haushaltssatzung_2025.pdf"
+    oparl_id: "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/paper/5596"
 
   - referenz: "DS 89/2024 2. Ergänzung"
     titel: "Haushaltssatzung und Haushaltsplan für das Haushaltsjahr 2025 (Endfassung)"
     datum: "2024-12-17"
-    pdf_url: "https://nordstemmen-mcp.levinkeller.de/pdf/f42578e8afb5426b404363f3bf140512e7a63a0095b1110131ab566468b694ef"
+    pdf_url: "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/files/UGhVM0hpd2NXNFdFcExjZQ2T96uKgyP5R2c_GCCILnfL6GBcUYL3hBjZLsrY_pcf/Anlage_5_Veraenderungsliste_2_Ergaenzung.pdf"
+    oparl_id: "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/paper/5623"
 
   - referenz: "DS 85/2023"
     titel: "Haushaltssatzung und Haushaltsplan für das Haushaltsjahr 2024"
     datum: "2023-12-19"
-    pdf_url: "https://nordstemmen-mcp.levinkeller.de/pdf/bd51cbcb2c1314c9e871beec225f661105044db83ea8b4ec99f8995712b09bbf"
+    pdf_url: "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/files/UGhVM0hpd2NXNFdFcExjZQ3UF3AD8-UrXjGOzlwqrzFtB1GTBJHR6NB8GuV9iE-G/Anlage_2_Haushaltssicherungskonzept_2024.pdf"
+    oparl_id: "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/paper/5424"

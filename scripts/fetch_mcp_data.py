@@ -17,7 +17,7 @@ from pathlib import Path
 from datetime import datetime
 import re
 
-MCP_URL = "https://nordstemmen-mcp.levinkeller.de/mcp"
+MCP_URL = "https://nordstemmen-mcp.levinkeller.de/mcp"  # NOTE: This proxy may be unavailable. Use Claude Code MCP integration instead.
 DATA_DIR = Path(__file__).parent.parent / "data"
 
 

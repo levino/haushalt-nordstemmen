@@ -1,0 +1,29 @@
+{
+  "jahr": 2011,
+  "typ": "ist",
+  "quelle": "DS 93/2014 - Jahresabschluss 2011",
+  "quelle_url": "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/files/UGhVM0hpd2NXNFdFcExjZXCVovaGqSiDjpVNVhEOwJVSdljXkMBrSvG1pPI2ZRNN/Beschlussvorlage_DS_93-2014.pdf",
+  "ertraege": {
+    "steuern_und_abgaben": 7663183,
+    "zuwendungen_und_umlagen": 3483238,
+    "aufloesungsertraege_sonderposten": 403999,
+    "oeffentlich_rechtliche_entgelte": 1902856,
+    "privatrechtliche_entgelte": 94062,
+    "kostenerstattungen": 93494,
+    "zinsen_finanzertraege": 83760,
+    "sonstige_ertraege": 476756
+  },
+  "aufwendungen": {
+    "personalaufwendungen": 3515705,
+    "sach_und_dienstleistungen": 1853360,
+    "abschreibungen": 1315185,
+    "zinsen_aufwendungen": 1282813,
+    "transferaufwendungen": 6897892,
+    "sonstige_aufwendungen": 432988
+  },
+  "summen": {
+    "gesamtertraege": 14511509,
+    "gesamtaufwendungen": 15310999,
+    "jahresergebnis": -799489
+  }
+}
