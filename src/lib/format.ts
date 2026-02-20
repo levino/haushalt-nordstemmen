@@ -29,14 +29,14 @@ export function formatTausendEUR(value: number): number {
  * Beschreibungen für Ertragsarten
  */
 export const ertraegeLabels: Record<string, string> = {
-  steuern_und_abgaben: 'Steuern',
-  zuwendungen_und_umlagen: 'Zuwendungen',
+  steuern_und_abgaben: 'Steuern & Abgaben',
+  zuwendungen_und_umlagen: 'Zuwendungen & Umlagen',
   aufloesungsertraege_sonderposten: 'Sonderposten',
-  oeffentlich_rechtliche_entgelte: 'Entgelte',
-  privatrechtliche_entgelte: 'Privatentgelte',
+  oeffentlich_rechtliche_entgelte: 'Öffentl. Entgelte',
+  privatrechtliche_entgelte: 'Private Entgelte',
   kostenerstattungen: 'Erstattungen',
-  zinsen_finanzertraege: 'Zinsen',
-  sonstige_ertraege: 'Sonstige Einnahmen',
+  zinsen_finanzertraege: 'Zinserträge',
+  sonstige_ertraege: 'Sonstige Erträge',
 };
 
 /**
@@ -44,10 +44,10 @@ export const ertraegeLabels: Record<string, string> = {
  */
 export const aufwendungenLabels: Record<string, string> = {
   personalaufwendungen: 'Personal',
-  sach_und_dienstleistungen: 'Sachkosten',
+  sach_und_dienstleistungen: 'Sach- & Dienstleist.',
   abschreibungen: 'Abschreibungen',
-  zinsen_aufwendungen: 'Zinskosten',
-  transferaufwendungen: 'Transfers',
+  zinsen_aufwendungen: 'Zinsaufwendungen',
+  transferaufwendungen: 'Transfers & Umlagen',
   sonstige_aufwendungen: 'Sonstige Ausgaben',
 };
 
