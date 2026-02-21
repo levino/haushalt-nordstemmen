@@ -2,6 +2,7 @@
   "jahr": 2027,
   "typ": "plan",
   "quelle": "DS 103/2025 - Mittelfristige Finanzplanung",
+  "quelle_url": "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/files/UGhVM0hpd2NXNFdFcExjZVZ8H-sQt3zbP6rxGv2x5JIspRAZKcn6SbFn-MEJGwDM/Beschlussvorlage_DS_103-2025.pdf",
   "ertraege": {
     "steuern_und_abgaben": 14272000,
     "zuwendungen_und_umlagen": 6556100,

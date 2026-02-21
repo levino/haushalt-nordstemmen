@@ -1,0 +1,29 @@
+{
+  "jahr": 2015,
+  "typ": "ist",
+  "quelle": "DS 138/2017 - Jahresabschluss 2015",
+  "quelle_url": "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/files/UGhVM0hpd2NXNFdFcExjZQAoPu5r1BrAisKYOuxqC-rWQXjDB8b4rKfL8_Lor8ar/Jahresabschluss_2015.pdf",
+  "ertraege": {
+    "steuern_und_abgaben": 14678117,
+    "zuwendungen_und_umlagen": 2178823,
+    "aufloesungsertraege_sonderposten": 792184,
+    "oeffentlich_rechtliche_entgelte": 2397573,
+    "privatrechtliche_entgelte": 198547,
+    "kostenerstattungen": 21632,
+    "zinsen_finanzertraege": 143861,
+    "sonstige_ertraege": 699017
+  },
+  "aufwendungen": {
+    "personalaufwendungen": 3958879,
+    "sach_und_dienstleistungen": 2916433,
+    "abschreibungen": 2123332,
+    "zinsen_aufwendungen": 802890,
+    "transferaufwendungen": 11720208,
+    "sonstige_aufwendungen": 415930
+  },
+  "summen": {
+    "gesamtertraege": 22107652,
+    "gesamtaufwendungen": 21937827,
+    "jahresergebnis": 169825
+  }
+}

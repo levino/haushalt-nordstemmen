@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Mermaid from '../../components/Mermaid.astro';
+import SankeyChart from '../../components/SankeyChart.astro';
 import { getCollection } from 'astro:content';
 import { formatEUR, formatMioEUR, ertraegeLabels, aufwendungenLabels } from '../../lib/format';
 
@@ -17,28 +17,6 @@ const { haushalt } = Astro.props;
 
 const haushalte = await getCollection('haushalte');
 const sortedHaushalte = haushalte.sort((a, b) => b.data.jahr - a.data.jahr);
-
-// Sankey generieren
-function generateSankey(data: any, year: number): string {
-  const lines = ['sankey-beta', '', `%% Haushalt ${year}`];
-  lines.push('', '%% Einnahmen');
-  for (const [key, value] of Object.entries(data.ertraege)) {
-    const label = ertraegeLabels[key] || key;
-    const amount = Math.round((value as number) / 1000);
-    if (amount > 0) {
-      lines.push(`${label},Gemeinde,${amount}`);
-    }
-  }
-  lines.push('', '%% Ausgaben');
-  for (const [key, value] of Object.entries(data.aufwendungen)) {
-    const label = aufwendungenLabels[key] || key;
-    const amount = Math.round((value as number) / 1000);
-    if (amount > 0) {
-      lines.push(`Gemeinde,${label},${amount}`);
-    }
-  }
-  return lines.join('\n');
-}
 ---
 
 <Layout title={`Haushalt ${year}`}>
@@ -53,7 +31,11 @@ function generateSankey(data: any, year: number): string {
       </div>
 
       <h1>Haushalt {year} {haushalt.typ === 'ist' ? '(Ist-Ergebnis)' : '(Plan)'}</h1>
-      <p class="source">Quelle: {haushalt.quelle}</p>
+      <p class="source">
+        Quelle: {haushalt.quelle_url
+          ? <a href={haushalt.quelle_url} target="_blank">{haushalt.quelle}</a>
+          : haushalt.quelle}
+      </p>
 
       <div class="stats-grid">
         <div class="stat-card">
@@ -73,8 +55,10 @@ function generateSankey(data: any, year: number): string {
       </div>
 
       <h2>Geldfluss</h2>
-      <Mermaid
-        chart={generateSankey(haushalt, parseInt(year!))}
+      <SankeyChart
+        data={haushalt}
+        ertraegeLabels={ertraegeLabels}
+        aufwendungenLabels={aufwendungenLabels}
         caption={`Geldfluss ${year} - Werte in Tausend EUR`}
       />
 

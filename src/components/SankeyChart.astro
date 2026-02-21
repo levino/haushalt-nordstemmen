@@ -1,0 +1,238 @@
+---
+interface Props {
+  data: {
+    ertraege: Record<string, number>;
+    aufwendungen: Record<string, number>;
+    summen: { gesamtertraege: number; gesamtaufwendungen: number; jahresergebnis: number };
+  };
+  ertraegeLabels: Record<string, string>;
+  aufwendungenLabels: Record<string, string>;
+  caption?: string;
+}
+
+const { data, ertraegeLabels, aufwendungenLabels, caption } = Astro.props;
+
+// Prepare sankey data server-side as JSON
+const nodes: { name: string; type: string }[] = [];
+const links: { source: number; target: number; value: number }[] = [];
+
+// Add income nodes (left side)
+const ertraegeEntries = Object.entries(data.ertraege).filter(([, v]) => v > 0);
+for (const [key] of ertraegeEntries) {
+  nodes.push({ name: ertraegeLabels[key] || key, type: 'einnahme' });
+}
+
+// Central node
+const gemeindeIndex = nodes.length;
+nodes.push({ name: 'Gemeinde', type: 'gemeinde' });
+
+// Add expense nodes (right side)
+const aufwendungenEntries = Object.entries(data.aufwendungen).filter(([, v]) => v > 0);
+for (const [key] of aufwendungenEntries) {
+  nodes.push({ name: aufwendungenLabels[key] || key, type: 'ausgabe' });
+}
+
+// Links: income -> Gemeinde
+ertraegeEntries.forEach(([, value], i) => {
+  links.push({ source: i, target: gemeindeIndex, value: Math.round(value / 1000) });
+});
+
+// Links: Gemeinde -> expenses
+aufwendungenEntries.forEach(([, value], i) => {
+  links.push({ source: gemeindeIndex, target: gemeindeIndex + 1 + i, value: Math.round(value / 1000) });
+});
+
+const sankeyData = JSON.stringify({ nodes, links });
+const chartId = `sankey-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<div class="sankey-container">
+  <div id={chartId} class="sankey-chart" data-sankey={sankeyData}></div>
+  {caption && <p class="sankey-caption">{caption}</p>}
+</div>
+
+<style>
+  .sankey-container {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow-x: auto;
+  }
+
+  .sankey-chart {
+    min-height: 350px;
+  }
+
+  .sankey-chart :global(svg) {
+    width: 100%;
+    height: auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .sankey-chart :global(.node rect) {
+    shape-rendering: crispEdges;
+  }
+
+  .sankey-chart :global(.node text) {
+    font-size: 11px;
+    fill: #2d3748;
+  }
+
+  .sankey-chart :global(.link) {
+    fill: none;
+    stroke-opacity: 0.3;
+    transition: stroke-opacity 0.2s;
+  }
+
+  .sankey-chart :global(.link:hover) {
+    stroke-opacity: 0.6;
+  }
+
+  .sankey-chart :global(.tooltip) {
+    position: absolute;
+    background: rgba(26, 54, 93, 0.95);
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 10;
+  }
+
+  .sankey-caption {
+    text-align: center;
+    color: #718096;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+</style>
+
+<script>
+  import * as d3 from 'd3';
+  import { sankey as d3Sankey, sankeyLinkHorizontal } from 'd3-sankey';
+
+  function formatTausend(v: number): string {
+    return new Intl.NumberFormat('de-DE').format(v) + ' Tsd. EUR';
+  }
+
+  const colorEinnahme = '#38a169';
+  const colorAusgabe = '#e53e3e';
+  const colorGemeinde = '#1a365d';
+
+  function nodeColor(d: any): string {
+    if (d.type === 'einnahme') return colorEinnahme;
+    if (d.type === 'ausgabe') return colorAusgabe;
+    return colorGemeinde;
+  }
+
+  function linkColor(d: any): string {
+    if (d.source.type === 'einnahme') return colorEinnahme;
+    return colorAusgabe;
+  }
+
+  function renderSankey(container: HTMLElement) {
+    const raw = container.dataset.sankey;
+    if (!raw) return;
+    const data = JSON.parse(raw);
+
+    const width = Math.min(container.clientWidth || 900, 900);
+    const height = 400;
+    const margin = { top: 10, right: 140, bottom: 10, left: 140 };
+
+    const svg = d3.select(container)
+      .append('svg')
+      .attr('viewBox', `0 0 ${width} ${height}`)
+      .attr('preserveAspectRatio', 'xMidYMid meet');
+
+    const sankeyGenerator = d3Sankey()
+      .nodeId((d: any) => d.index)
+      .nodeWidth(20)
+      .nodePadding(12)
+      .nodeAlign((node: any) => {
+        if (node.type === 'einnahme') return 0;
+        if (node.type === 'gemeinde') return 1;
+        return 2;
+      })
+      .extent([[margin.left, margin.top], [width - margin.right, height - margin.bottom]]);
+
+    const { nodes, links } = sankeyGenerator({
+      nodes: data.nodes.map((d: any) => ({ ...d })),
+      links: data.links.map((d: any) => ({ ...d })),
+    });
+
+    // Tooltip
+    const tooltip = d3.select(container)
+      .append('div')
+      .attr('class', 'tooltip')
+      .style('opacity', 0)
+      .style('position', 'absolute');
+
+    // Links
+    svg.append('g')
+      .selectAll('.link')
+      .data(links)
+      .join('path')
+      .attr('class', 'link')
+      .attr('d', sankeyLinkHorizontal())
+      .attr('stroke', (d: any) => linkColor(d))
+      .attr('stroke-width', (d: any) => Math.max(1, d.width))
+      .on('mouseover', (event: MouseEvent, d: any) => {
+        d3.select(event.currentTarget as SVGPathElement).attr('stroke-opacity', 0.6);
+        tooltip
+          .html(`${d.source.name} → ${d.target.name}<br><strong>${formatTausend(d.value)}</strong>`)
+          .style('left', (event.offsetX + 10) + 'px')
+          .style('top', (event.offsetY - 30) + 'px')
+          .style('opacity', 1);
+      })
+      .on('mouseout', (event: MouseEvent) => {
+        d3.select(event.currentTarget as SVGPathElement).attr('stroke-opacity', 0.3);
+        tooltip.style('opacity', 0);
+      });
+
+    // Nodes
+    const node = svg.append('g')
+      .selectAll('.node')
+      .data(nodes)
+      .join('g')
+      .attr('class', 'node');
+
+    node.append('rect')
+      .attr('x', (d: any) => d.x0)
+      .attr('y', (d: any) => d.y0)
+      .attr('width', (d: any) => d.x1 - d.x0)
+      .attr('height', (d: any) => Math.max(1, d.y1 - d.y0))
+      .attr('fill', (d: any) => nodeColor(d))
+      .attr('rx', 2);
+
+    // Labels
+    node.append('text')
+      .attr('x', (d: any) => d.type === 'ausgabe' ? d.x1 + 6 : d.x0 - 6)
+      .attr('y', (d: any) => (d.y0 + d.y1) / 2)
+      .attr('dy', '0.35em')
+      .attr('text-anchor', (d: any) => d.type === 'ausgabe' ? 'start' : 'end')
+      .text((d: any) => d.name)
+      .style('font-size', '11px')
+      .style('fill', '#2d3748');
+
+    // Value labels on nodes
+    node.append('text')
+      .attr('x', (d: any) => d.type === 'ausgabe' ? d.x1 + 6 : d.x0 - 6)
+      .attr('y', (d: any) => (d.y0 + d.y1) / 2 + 14)
+      .attr('dy', '0.35em')
+      .attr('text-anchor', (d: any) => d.type === 'ausgabe' ? 'start' : 'end')
+      .text((d: any) => {
+        if (d.type === 'gemeinde') return '';
+        const val = d.type === 'einnahme' ? d.sourceLinks?.[0]?.value : d.targetLinks?.[0]?.value;
+        return val ? formatTausend(val) : '';
+      })
+      .style('font-size', '9px')
+      .style('fill', '#718096');
+  }
+
+  // Render all sankey charts on the page
+  document.querySelectorAll<HTMLElement>('.sankey-chart[data-sankey]').forEach(renderSankey);
+</script>

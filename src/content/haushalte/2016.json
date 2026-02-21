@@ -1,0 +1,29 @@
+{
+  "jahr": 2016,
+  "typ": "ist",
+  "quelle": "DS 109/2018 - Jahresabschluss 2016",
+  "quelle_url": "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/files/UGhVM0hpd2NXNFdFcExjZU4lJ5OlDCtmONdyWklQ6pXGgKFESojj9-kWrR5uknXV/Jahresabschluss_2016.pdf",
+  "ertraege": {
+    "steuern_und_abgaben": 11999523,
+    "zuwendungen_und_umlagen": 3153256,
+    "aufloesungsertraege_sonderposten": 780804,
+    "oeffentlich_rechtliche_entgelte": 2460356,
+    "privatrechtliche_entgelte": 200514,
+    "kostenerstattungen": 43842,
+    "zinsen_finanzertraege": 83834,
+    "sonstige_ertraege": 960416
+  },
+  "aufwendungen": {
+    "personalaufwendungen": 4401065,
+    "sach_und_dienstleistungen": 2690355,
+    "abschreibungen": 1961675,
+    "zinsen_aufwendungen": 751432,
+    "transferaufwendungen": 8832647,
+    "sonstige_aufwendungen": 639909
+  },
+  "summen": {
+    "gesamtertraege": 20041420,
+    "gesamtaufwendungen": 19322197,
+    "jahresergebnis": 719223
+  }
+}

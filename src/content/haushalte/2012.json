@@ -1,0 +1,29 @@
+{
+  "jahr": 2012,
+  "typ": "ist",
+  "quelle": "DS 96/2016 - Jahresabschluss 2012",
+  "quelle_url": "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/files/UGhVM0hpd2NXNFdFcExjZeJnYto_AVWWZW1aRxObRjFgh-oq9nvURinuid4YwjAX/Anlage_1_zur_Beschlussvorlage_DS_96-2016.pdf",
+  "ertraege": {
+    "steuern_und_abgaben": 10972366,
+    "zuwendungen_und_umlagen": 4604400,
+    "aufloesungsertraege_sonderposten": 411738,
+    "oeffentlich_rechtliche_entgelte": 1900804,
+    "privatrechtliche_entgelte": 75789,
+    "kostenerstattungen": 55147,
+    "zinsen_finanzertraege": 122790,
+    "sonstige_ertraege": 625243
+  },
+  "aufwendungen": {
+    "personalaufwendungen": 3206408,
+    "sach_und_dienstleistungen": 2153996,
+    "abschreibungen": 2050466,
+    "zinsen_aufwendungen": 1021606,
+    "transferaufwendungen": 7850341,
+    "sonstige_aufwendungen": 455826
+  },
+  "summen": {
+    "gesamtertraege": 19169135,
+    "gesamtaufwendungen": 16849168,
+    "jahresergebnis": 2319967
+  }
+}

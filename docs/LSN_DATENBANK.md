@@ -164,10 +164,9 @@ if __name__ == "__main__":
 
 ### Für Nordstemmen empfohlen:
 
-1. **MCP Server Nordstemmen**
-   - URL: https://nordstemmen-mcp.levinkeller.de/mcp
-   - Enthält alle Haushaltspläne seit 2007
-   - Strukturierte JSON-API
+1. **MCP Server Nordstemmen** (via Claude Code)
+   - Semantische Suche über alle Ratsdokumente seit 2007
+   - Zugriff via Claude Code MCP-Integration (Model Context Protocol)
 
 2. **OParl-API Ratsinformationssystem**
    - URL: https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/

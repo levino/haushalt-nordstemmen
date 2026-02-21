@@ -1,0 +1,29 @@
+{
+  "jahr": 2010,
+  "typ": "ist",
+  "quelle": "DS 92/2014 - Jahresabschluss 2010",
+  "quelle_url": "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/files/UGhVM0hpd2NXNFdFcExjZWP8rs39TsKHfBkgmQg9DnQsaOOp6518KDSEFZxafObN/Jahresabschluss_2010_Teil_1.pdf",
+  "ertraege": {
+    "steuern_und_abgaben": 6944099,
+    "zuwendungen_und_umlagen": 3621755,
+    "aufloesungsertraege_sonderposten": 0,
+    "oeffentlich_rechtliche_entgelte": 2016363,
+    "privatrechtliche_entgelte": 81045,
+    "kostenerstattungen": 104653,
+    "zinsen_finanzertraege": 64266,
+    "sonstige_ertraege": 876973
+  },
+  "aufwendungen": {
+    "personalaufwendungen": 2933412,
+    "sach_und_dienstleistungen": 1917802,
+    "abschreibungen": 1374861,
+    "zinsen_aufwendungen": 1145915,
+    "transferaufwendungen": 6677309,
+    "sonstige_aufwendungen": 393039
+  },
+  "summen": {
+    "gesamtertraege": 14209946,
+    "gesamtaufwendungen": 14479705,
+    "jahresergebnis": -269759
+  }
+}

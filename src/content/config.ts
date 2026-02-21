@@ -7,6 +7,7 @@ const haushalteCollection = defineCollection({
     jahr: z.number(),
     typ: z.enum(['plan', 'ist']),
     quelle: z.string(),
+    quelle_url: z.string().url().optional(),
     ertraege: z.object({
       steuern_und_abgaben: z.number(),
       zuwendungen_und_umlagen: z.number(),

@@ -16,20 +16,6 @@ const { title, description = "Transparente Visualisierung des Gemeindehaushalts 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title} | Haushalt Nordstemmen</title>
     <link rel="stylesheet" href="/styles/global.css" />
-    <script type="module" is:inline>
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({
-        startOnLoad: true,
-        theme: 'default',
-        sankey: {
-          showValues: true,
-          width: 900,
-          height: 400,
-          linkColor: 'gradient',
-          nodeAlignment: 'justify',
-        },
-      });
-    </script>
   </head>
   <body>
     <nav class="navbar">
@@ -37,8 +23,8 @@ const { title, description = "Transparente Visualisierung des Gemeindehaushalts 
         <a href="/" class="logo">Haushalt Nordstemmen</a>
         <div class="nav-links">
           <a href="/">Start</a>
+          <a href="/analyse">Analyse</a>
           <a href="/haushalt/2026">2026</a>
-          <a href="/haushalt/2025">2025</a>
           <a href="/einnahmen">Einnahmen</a>
           <a href="/ausgaben">Ausgaben</a>
           <a href="/sankey">Sankey</a>

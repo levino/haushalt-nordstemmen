@@ -1,0 +1,29 @@
+{
+  "jahr": 2018,
+  "typ": "ist",
+  "quelle": "DS 57/2020 - Jahresabschluss 2018",
+  "quelle_url": "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/files/UGhVM0hpd2NXNFdFcExjZaOswM3jXuh1uqOK8zk2KqQFaxxc9n9gNaJJpi2oboDD/SKM_C30820082109280.pdf",
+  "ertraege": {
+    "steuern_und_abgaben": 10781419,
+    "zuwendungen_und_umlagen": 4330956,
+    "aufloesungsertraege_sonderposten": 803538,
+    "oeffentlich_rechtliche_entgelte": 2519509,
+    "privatrechtliche_entgelte": 190641,
+    "kostenerstattungen": 42754,
+    "zinsen_finanzertraege": 75299,
+    "sonstige_ertraege": 1156471
+  },
+  "aufwendungen": {
+    "personalaufwendungen": 4311517,
+    "sach_und_dienstleistungen": 3470684,
+    "abschreibungen": 2522761,
+    "zinsen_aufwendungen": 702217,
+    "transferaufwendungen": 8972511,
+    "sonstige_aufwendungen": 472669
+  },
+  "summen": {
+    "gesamtertraege": 20034611,
+    "gesamtaufwendungen": 20481494,
+    "jahresergebnis": -446883
+  }
+}

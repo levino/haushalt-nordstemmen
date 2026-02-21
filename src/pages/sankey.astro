@@ -1,38 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Mermaid from '../components/Mermaid.astro';
+import SankeyChart from '../components/SankeyChart.astro';
 import { getCollection } from 'astro:content';
 import { ertraegeLabels, aufwendungenLabels } from '../lib/format';
 
 const haushalte = await getCollection('haushalte');
 const sortedHaushalte = haushalte.sort((a, b) => b.data.jahr - a.data.jahr);
-
-// Generiere Sankey-Diagramm für ein Jahr
-function generateSankey(data: any): string {
-  const lines = ['sankey-beta'];
-
-  // Einnahmen -> Gemeinde (Labels ohne Sonderzeichen für Kompatibilität)
-  for (const [key, value] of Object.entries(data.ertraege)) {
-    const label = (ertraegeLabels[key] || key).replace(/[&,]/g, ' ');
-    const amount = Math.round((value as number) / 1000);
-    if (amount > 0) {
-      lines.push(`${label},Gemeinde,${amount}`);
-    }
-  }
-
-  // Gemeinde -> Ausgaben
-  for (const [key, value] of Object.entries(data.aufwendungen)) {
-    const label = (aufwendungenLabels[key] || key).replace(/[&,]/g, ' ');
-    const amount = Math.round((value as number) / 1000);
-    if (amount > 0) {
-      lines.push(`Gemeinde,${label},${amount}`);
-    }
-  }
-
-  return lines.join('\n');
-}
-
-// Alle Haushalte werden in der Schleife unten gerendert
 ---
 
 <Layout title="Sankey-Diagramme">
@@ -42,6 +15,7 @@ function generateSankey(data: any): string {
       <p>
         Sankey-Diagramme visualisieren den Geldfluss im Gemeindehaushalt.
         Die Breite der Bänder entspricht der Höhe der Beträge (in Tausend EUR).
+        Fahren Sie mit der Maus über ein Band für Details.
       </p>
 
       <div class="year-nav">
@@ -53,9 +27,15 @@ function generateSankey(data: any): string {
       {sortedHaushalte.map(h => (
         <div id={`jahr-${h.data.jahr}`} class="sankey-section">
           <h2>Haushalt {h.data.jahr} {h.data.typ === 'ist' ? '(Ist)' : '(Plan)'}</h2>
-          <p class="source">Quelle: {h.data.quelle}</p>
-          <Mermaid
-            chart={generateSankey(h.data)}
+          <p class="source">
+            Quelle: {h.data.quelle_url
+              ? <a href={h.data.quelle_url} target="_blank">{h.data.quelle}</a>
+              : h.data.quelle}
+          </p>
+          <SankeyChart
+            data={h.data}
+            ertraegeLabels={ertraegeLabels}
+            aufwendungenLabels={aufwendungenLabels}
             caption={`Geldfluss ${h.data.jahr} - Werte in Tausend EUR`}
           />
         </div>
@@ -78,6 +58,9 @@ function generateSankey(data: any): string {
         </p>
         <p>
           <strong>Bandbreite:</strong> Je breiter ein Band, desto größer der Geldbetrag
+        </p>
+        <p>
+          <strong>Interaktiv:</strong> Fahren Sie mit der Maus über die Bänder, um die genauen Beträge zu sehen
         </p>
       </div>
     </div>

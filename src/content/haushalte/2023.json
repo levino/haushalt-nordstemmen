@@ -1,0 +1,29 @@
+{
+  "jahr": 2023,
+  "typ": "ist",
+  "quelle": "DS 58/2024 - Vorläufiger Jahresabschluss 2023",
+  "quelle_url": "https://nordstemmen.ratsinfomanagement.net/webservice/oparl/v1.1/body/1/files/UGhVM0hpd2NXNFdFcExjZcHFrg0FmvIkYYt1pjlY0pROZSbwwQ07HkRNIHYK5gyX/2024-08-23_Anlage_1_vorlaeufiges_Ergebnis_2023.pdf",
+  "ertraege": {
+    "steuern_und_abgaben": 13783548,
+    "zuwendungen_und_umlagen": 6945496,
+    "aufloesungsertraege_sonderposten": 832916,
+    "oeffentlich_rechtliche_entgelte": 2914797,
+    "privatrechtliche_entgelte": 225148,
+    "kostenerstattungen": 46754,
+    "zinsen_finanzertraege": 89542,
+    "sonstige_ertraege": 1006975
+  },
+  "aufwendungen": {
+    "personalaufwendungen": 4819188,
+    "sach_und_dienstleistungen": 4307722,
+    "abschreibungen": 2198149,
+    "zinsen_aufwendungen": 611941,
+    "transferaufwendungen": 12274716,
+    "sonstige_aufwendungen": 632244
+  },
+  "summen": {
+    "gesamtertraege": 25887060,
+    "gesamtaufwendungen": 24843960,
+    "jahresergebnis": 1043100
+  }
+}
